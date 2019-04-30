@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="zgui">
+      <UniqueIdentifier>{8f3a8e89-cf8b-47cc-8de5-83d2df2af07c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="json">
+      <UniqueIdentifier>{7cf2a0d7-a2ba-43e3-9db1-763421443d47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk">
+      <UniqueIdentifier>{e041ee3d-85a3-4dc4-9206-f97d403e68a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\utils">
+      <UniqueIdentifier>{07c07786-a709-4e3c-b0dc-09c2b9572fd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\utils\vmt">
+      <UniqueIdentifier>{04747edf-be3b-4c00-83e2-da520eff2bed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\utils\vfunc">
+      <UniqueIdentifier>{339bede2-c846-456a-b5a6-d5e1085dac33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\interfaces">
+      <UniqueIdentifier>{d29a5a44-67a3-4148-a92a-555d4addfaed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\interfaces\valve">
+      <UniqueIdentifier>{bf6b3289-d737-4261-9da6-5537ac5d0d10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\misc">
+      <UniqueIdentifier>{0ffa54f0-77dc-4f7f-9809-d6a66faf9451}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\math">
+      <UniqueIdentifier>{00a55bd6-aea5-4114-98cc-697d5189ee8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\utils\drawmanager">
+      <UniqueIdentifier>{671af494-6840-45aa-a09a-53f27510fcb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\hooks">
+      <UniqueIdentifier>{727a3438-8200-43d6-a3c3-cd0b14d97819}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\menu">
+      <UniqueIdentifier>{cfc52fd5-99f3-4999-8a1f-d13e8fb1b01d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\netvarmanager">
+      <UniqueIdentifier>{edc1657c-f59b-4b93-af69-f631591055ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="features">
+      <UniqueIdentifier>{5039b754-ef52-46ce-bbb1-04cb149a0248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="features\visuals">
+      <UniqueIdentifier>{58aa5530-3353-438b-87e0-a03db4b4f256}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DLLMain.cpp" />
+    <ClCompile Include="zgui\zgui.cpp">
+      <Filter>zgui</Filter>
+    </ClCompile>
+    <ClCompile Include="json\jsoncpp.cpp">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\sdk.cpp">
+      <Filter>sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\interfaces\interfaces.cpp">
+      <Filter>sdk\interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\math\vector2d.cpp">
+      <Filter>sdk\math</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\utils\utils.cpp">
+      <Filter>sdk\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\math\vmatrix.cpp">
+      <Filter>sdk\math</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\misc\color.cpp">
+      <Filter>sdk\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\utils\drawmanager\drawmanager.cpp">
+      <Filter>sdk\utils\drawmanager</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\hooks\hooks.cpp">
+      <Filter>sdk\hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\menu\menu.cpp">
+      <Filter>sdk\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\netvarmanager\netvarmanager.cpp">
+      <Filter>sdk\netvarmanager</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\misc\baseentity.cpp">
+      <Filter>sdk\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="features\visuals\esp.cpp">
+      <Filter>features\visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\math\math.cpp">
+      <Filter>sdk\math</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="zgui\zgui.hpp">
+      <Filter>zgui</Filter>
+    </ClInclude>
+    <ClInclude Include="json\json.hpp">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\json-forwards.hpp">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\sdk.hpp">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\utils\vmt\vmt.hpp">
+      <Filter>sdk\utils\vmt</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\utils\vfunc\vfunc.hpp">
+      <Filter>sdk\utils\vfunc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\interfaces.hpp">
+      <Filter>sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\iappsystem.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\isurface.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\ipanel.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\math\vector2d.hpp">
+      <Filter>sdk\math</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\globalvars.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\utils\utils.hpp">
+      <Filter>sdk\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\clientclass.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\classid.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\recv.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\iclientnetworkable.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\math\qangle.hpp">
+      <Filter>sdk\math</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\math\vmatrix.hpp">
+      <Filter>sdk\math</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\math\vector.hpp">
+      <Filter>sdk\math</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\ivengineclient.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\utils\drawmanager\drawmanager.hpp">
+      <Filter>sdk\utils\drawmanager</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\color.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\ibaseclientdll.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\hooks\hooks.hpp">
+      <Filter>sdk\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\menu\menu.hpp">
+      <Filter>sdk\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\ihandleentity.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\basehandle.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\iclientmode.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\iclientrenderable.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\iclientthinkable.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\icollideable.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\iclientunknown.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\icliententitylist.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\icliententity.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\netvarmanager\netvarmanager.hpp">
+      <Filter>sdk\netvarmanager</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\baseentity.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="features\visuals\esp.hpp">
+      <Filter>features\visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\math\math.hpp">
+      <Filter>sdk\math</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\singleton.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\netvarmanager\fnv.hpp">
+      <Filter>sdk\netvarmanager</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
