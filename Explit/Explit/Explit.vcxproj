@@ -163,6 +163,8 @@
     <ClInclude Include="sdk\interfaces\valve\ivengineclient.hpp" />
     <ClInclude Include="sdk\math\math.hpp" />
     <ClInclude Include="sdk\math\qangle.hpp" />
+    <ClInclude Include="sdk\math\spoint.hpp" />
+    <ClInclude Include="sdk\math\srect.hpp" />
     <ClInclude Include="sdk\math\vector.hpp" />
     <ClInclude Include="sdk\math\vector2d.hpp" />
     <ClInclude Include="sdk\math\vmatrix.hpp" />
@@ -181,6 +183,7 @@
     <ClInclude Include="sdk\misc\iclientunknown.hpp" />
     <ClInclude Include="sdk\misc\icollideable.hpp" />
     <ClInclude Include="sdk\misc\ihandleentity.hpp" />
+    <ClInclude Include="sdk\misc\itemdefinitionindex.hpp" />
     <ClInclude Include="sdk\misc\recv.hpp" />
     <ClInclude Include="sdk\misc\singleton.hpp" />
     <ClInclude Include="sdk\netvarmanager\fnv.hpp" />

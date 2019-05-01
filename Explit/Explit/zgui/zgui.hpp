@@ -164,7 +164,8 @@ namespace zgui {
 	{
 		uint32_t blocking;
 		std::stack<vec2> cursor_pos;
-		vec2 position, size;
+		vec2 size;
+		vec2 position = { 100,100 };
 		vec2 next_cursor_pos;
 		bool dragging;
 		bool opened;
@@ -198,6 +199,7 @@ namespace zgui {
 	void checkbox(const char* id, bool& value) noexcept;
 	void toggle_button(const char* id, vec2 size, bool& value) noexcept;
 	bool button(const char* id, vec2 size) noexcept;
+	bool tab_button(const char* id, vec2 size, bool value) noexcept;
 
 	void key_bind(const char* id, int& value) noexcept;
 	void text_input(const char* id, std::string& value, int max_length = 16, int flags = 0) noexcept;
@@ -205,6 +207,7 @@ namespace zgui {
 	bool clickable_text(const char* id) noexcept;
 	void text(const char* text) noexcept;
 	void dummy() noexcept;
+	void push(vec2 push) noexcept;
 
 	void next_column(int pusher_x = 174, int pusher_y = 14) noexcept;
 

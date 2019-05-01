@@ -222,5 +222,14 @@
     <ClInclude Include="sdk\netvarmanager\fnv.hpp">
       <Filter>sdk\netvarmanager</Filter>
     </ClInclude>
+    <ClInclude Include="sdk\math\spoint.hpp">
+      <Filter>sdk\math</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\math\srect.hpp">
+      <Filter>sdk\math</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\itemdefinitionindex.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

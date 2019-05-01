@@ -36,11 +36,7 @@ uintptr_t c_utils::find_signature(const char* module, const char* signature)
 	}
 	return 0u;
 }
-inline std::string const& c_utils::to_string(std::string const& s) 
-{
-	return s; 
-}
-
+inline std::string const& to_string(std::string const& s) { return s; }
 template<typename... Args>
 std::string c_utils::stringer(Args const&... args)
 {

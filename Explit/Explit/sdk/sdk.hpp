@@ -13,6 +13,8 @@
 #include "../json/json.hpp"
 #include "../json/json-forwards.hpp"
 #include "utils/vfunc/vfunc.hpp"
+#include "math/spoint.hpp"
+#include "math/srect.hpp"
 #include "../zgui/zgui.hpp"
 #include "misc/singleton.hpp"
 #include "misc/iappsystem.hpp"
