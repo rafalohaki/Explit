@@ -185,7 +185,7 @@ namespace zgui {
 	bool begin_window(std::string_view title, vec2 default_size, unsigned long font, int flags = 0);
 	void end_window() noexcept;
 
-	void begin_groupbox(std::string_view title, vec2 size) noexcept;
+	void begin_groupbox(std::string_view title, vec2 size = vec2{ 163,290 }) noexcept;
 	void end_groupbox() noexcept;
 
 	void slider_int(const char* id, int min, int max, int& value) noexcept;
@@ -198,7 +198,7 @@ namespace zgui {
 
 	void checkbox(const char* id, bool& value) noexcept;
 	void toggle_button(const char* id, vec2 size, bool& value) noexcept;
-	bool button(const char* id, vec2 size) noexcept;
+	bool button(const char* id, vec2 size = vec2{ 147,18 }) noexcept;
 	bool tab_button(const char* id, vec2 size, bool value) noexcept;
 
 	void key_bind(const char* id, int& value) noexcept;
@@ -209,7 +209,7 @@ namespace zgui {
 	void dummy() noexcept;
 	void push(vec2 push) noexcept;
 
-	void next_column(int pusher_x = 174, int pusher_y = 14) noexcept;
+	void next_column(int pusher_x = 164, int pusher_y = 34) noexcept;
 
 	void same_line(float x_axis = -1) noexcept;
 	void backup_line() noexcept;

@@ -135,6 +135,7 @@
     <ClCompile Include="DLLMain.cpp" />
     <ClCompile Include="features\visuals\esp.cpp" />
     <ClCompile Include="json\jsoncpp.cpp" />
+    <ClCompile Include="sdk\config\config.cpp" />
     <ClCompile Include="sdk\hooks\hooks.cpp" />
     <ClCompile Include="sdk\interfaces\interfaces.cpp" />
     <ClCompile Include="sdk\math\math.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="features\visuals\esp.hpp" />
     <ClInclude Include="json\json-forwards.hpp" />
     <ClInclude Include="json\json.hpp" />
+    <ClInclude Include="sdk\config\config.hpp" />
     <ClInclude Include="sdk\hooks\hooks.hpp" />
     <ClInclude Include="sdk\interfaces\interfaces.hpp" />
     <ClInclude Include="sdk\interfaces\valve\globalvars.hpp" />

@@ -5,14 +5,20 @@
 #include <memory>
 #include <thread>
 #include <chrono>
+#include <map>
 #include <string>
 #include <windows.h>
 #include <stdio.h>
 #include <Psapi.h>
+#include <fstream> 
+#include <thread>
+#include <Shlwapi.h>
+#pragma comment(lib, "shlwapi.lib")
 
 #include "../json/json.hpp"
 #include "../json/json-forwards.hpp"
 #include "utils/vfunc/vfunc.hpp"
+#include "config/config.hpp"
 #include "math/spoint.hpp"
 #include "math/srect.hpp"
 #include "../zgui/zgui.hpp"
@@ -66,3 +72,9 @@ public:
 	bool esp = false;
 };
 extern c_sdk g_sdk;
+
+
+
+
+
+

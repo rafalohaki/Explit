@@ -15,3 +15,10 @@ private:
 	void draw_misc();
 };
 extern c_menu g_menu;
+
+
+
+
+struct zgui_controls {
+
+};

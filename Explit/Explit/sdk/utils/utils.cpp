@@ -36,14 +36,3 @@ uintptr_t c_utils::find_signature(const char* module, const char* signature)
 	}
 	return 0u;
 }
-inline std::string const& to_string(std::string const& s) { return s; }
-template<typename... Args>
-std::string c_utils::stringer(Args const&... args)
-{
-	std::string result;
-	using ::to_string;
-	using std::to_string;
-	int unpack[]{ 0, (result += to_string(args), 0)... };
-	static_cast<void>(unpack);
-	return result;
-}

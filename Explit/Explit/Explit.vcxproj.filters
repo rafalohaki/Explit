@@ -49,6 +49,9 @@
     <Filter Include="features\visuals">
       <UniqueIdentifier>{58aa5530-3353-438b-87e0-a03db4b4f256}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sdk\config">
+      <UniqueIdentifier>{72c62355-e523-4c80-9aff-e3ab162d03bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DLLMain.cpp" />
@@ -96,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="sdk\math\math.cpp">
       <Filter>sdk\math</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\config\config.cpp">
+      <Filter>sdk\config</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +236,9 @@
     </ClInclude>
     <ClInclude Include="sdk\misc\itemdefinitionindex.hpp">
       <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\config\config.hpp">
+      <Filter>sdk\config</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

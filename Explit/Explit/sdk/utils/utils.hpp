@@ -10,10 +10,8 @@ private:
 	//std::string const& to_string(std::string const& s);
 public:
 	uintptr_t find_signature(const char* module, const char* signature);
-	template<typename... Args>
-	std::string stringer(Args const&... args);
 	template< typename ... Args >
-	std::string stringer2(Args const& ... args)
+	std::string stringer(Args const& ... args)
 	{
 		std::ostringstream stream;
 		using List = int[];

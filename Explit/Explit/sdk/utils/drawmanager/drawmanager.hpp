@@ -4,6 +4,7 @@
 class c_draw_manager {
 public:
 	vgui::HFont menu;
+	vgui::HFont esp;
 	void string(const int x, const int y, const Color c, const int font, const bool center, const std::string text);
 	void string_right(int x, const int y, const Color c, const int font, const std::string text);
 	void fill_rect(const int x, const int y, const int w, const int h, const Color c);

@@ -41,7 +41,9 @@ void __fastcall c_hooks::PaintTraverse(PVOID pPanels, int edx, unsigned int vgui
 		{
 			overlaypanel = vguiPanel;
 			g_draw.menu = g_interfaces.p_surface->CreateFont_();
-			g_interfaces.p_surface->SetFontGlyphSet(g_draw.menu, "Tahoma", 13, 360, 0, 0, FONTFLAG_ANTIALIAS | FONTFLAG_OUTLINE | FONTFLAG_DROPSHADOW);
+			g_interfaces.p_surface->SetFontGlyphSet(g_draw.menu, "Tahoma", 12, 540, 0, 0, FONTFLAG_OUTLINE | FONTFLAG_DROPSHADOW);
+			g_draw.esp = g_interfaces.p_surface->CreateFont_();
+			g_interfaces.p_surface->SetFontGlyphSet(g_draw.esp, "Tahoma", 11, 500, 0, 0, FONTFLAG_OUTLINE );
 		}
 	}
 	if (overlaypanel == vguiPanel)
