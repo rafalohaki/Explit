@@ -14,12 +14,12 @@ c_interfaces::c_interfaces()
 
 void c_interfaces::get_interfaces()
 {
-	p_panel = get_interface<IPanel>("vgui2.dll", "VGUI_Panel");
-	p_client = get_interface<IBaseClientDLL>("client_panorama.dll", "VClient");
-	p_engine = get_interface<IVEngineClient>("engine.dll", "VEngineClient");
-	p_surface = get_interface<ISurface>("vguimatsurface.dll", "VGUI_Surface");
-	p_entitylist = get_interface<IClientEntityList>("client_panorama.dll", "VClientEntityList");
-	p_globalvars = **(CGlobalVarsBase***)((*(DWORD**)(p_client))[0] + 0x1B);
+	p_panel = get_interface<i_panel>("vgui2.dll", "VGUI_Panel");
+	p_client = get_interface<i_base_client_dll>("client_panorama.dll", "VClient");
+	p_engine = get_interface<iv_engine_client>("engine.dll", "VEngineClient");
+	p_surface = get_interface<i_surface>("vguimatsurface.dll", "VGUI_Surface");
+	p_entitylist = get_interface<i_client_entity_list>("client_panorama.dll", "VClientEntityList");
+	p_globalvars = **(i_global_vars_base***)((*(DWORD**)(p_client))[0] + 0x1B);
 }
 
 template<typename t>

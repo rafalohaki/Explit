@@ -3,13 +3,13 @@ c_math g_math;
 
 bool c_math::screen_transform(const Vector& in, Vector& out)
 {
-	static auto& w2sMatrix = g_interfaces.p_engine->WorldToScreenMatrix();
+	static auto& w2smatrix = g_interfaces.p_engine->world_to_screen_matrix();
 
-	out.x = w2sMatrix.m[0][0] * in.x + w2sMatrix.m[0][1] * in.y + w2sMatrix.m[0][2] * in.z + w2sMatrix.m[0][3];
-	out.y = w2sMatrix.m[1][0] * in.x + w2sMatrix.m[1][1] * in.y + w2sMatrix.m[1][2] * in.z + w2sMatrix.m[1][3];
+	out.x = w2smatrix.m[0][0] * in.x + w2smatrix.m[0][1] * in.y + w2smatrix.m[0][2] * in.z + w2smatrix.m[0][3];
+	out.y = w2smatrix.m[1][0] * in.x + w2smatrix.m[1][1] * in.y + w2smatrix.m[1][2] * in.z + w2smatrix.m[1][3];
 	out.z = 0.0f;
 
-	float w = w2sMatrix.m[3][0] * in.x + w2sMatrix.m[3][1] * in.y + w2sMatrix.m[3][2] * in.z + w2sMatrix.m[3][3];
+	float w = w2smatrix.m[3][0] * in.x + w2smatrix.m[3][1] * in.y + w2smatrix.m[3][2] * in.z + w2smatrix.m[3][3];
 
 	if (w < 0.001f) {
 		out.x *= 100000;
@@ -27,7 +27,7 @@ bool c_math::world_to_screen(const Vector& in, Vector& out)
 {
 	if (screen_transform(in, out)) {
 		int w, h;
-		g_interfaces.p_engine->GetScreenSize(w, h);
+		g_interfaces.p_engine->get_screen_size(w, h);
 
 		out.x = (w / 2.0f) + (out.x * w) / 2.0f;
 		out.y = (h / 2.0f) - (out.y * h) / 2.0f;

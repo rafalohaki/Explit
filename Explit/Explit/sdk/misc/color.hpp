@@ -1,63 +1,63 @@
 #pragma once
 #include <cstdint>
 #include "../sdk.hpp"
-class Color
+class color
 {
 public:
-	Color();
-	Color(zgui::color col);
-	Color(int _r, int _g, int _b);
-	Color(int _r, int _g, int _b, int _a);
-	Color(float _r, float _g, float _b) : Color(_r, _g, _b, 1.0f) {}
-	Color(float _r, float _g, float _b, float _a)
-		: Color(
+	color();
+	color(zgui::color col);
+	color(int _r, int _g, int _b);
+	color(int _r, int _g, int _b, int _a);
+	color(float _r, float _g, float _b) : color(_r, _g, _b, 1.0f) {}
+	color(float _r, float _g, float _b, float _a)
+		: color(
 			static_cast<int>(_r * 255.0f),
 			static_cast<int>(_g * 255.0f),
 			static_cast<int>(_b * 255.0f),
 			static_cast<int>(_a * 255.0f))
 	{
 	}
-	explicit Color(float* rgb) : Color(rgb[0], rgb[1], rgb[2], 1.0f) {}
-	explicit Color(unsigned long argb)
+	explicit color(float* rgb) : color(rgb[0], rgb[1], rgb[2], 1.0f) {}
+	explicit color(unsigned long argb)
 	{
-		_CColor[2] = (unsigned char)((argb & 0x000000FF) >> (0 * 8));
-		_CColor[1] = (unsigned char)((argb & 0x0000FF00) >> (1 * 8));
-		_CColor[0] = (unsigned char)((argb & 0x00FF0000) >> (2 * 8));
-		_CColor[3] = (unsigned char)((argb & 0xFF000000) >> (3 * 8));
+		_ccolor[2] = (unsigned char)((argb & 0x000000ff) >> (0 * 8));
+		_ccolor[1] = (unsigned char)((argb & 0x0000ff00) >> (1 * 8));
+		_ccolor[0] = (unsigned char)((argb & 0x00ff0000) >> (2 * 8));
+		_ccolor[3] = (unsigned char)((argb & 0xff000000) >> (3 * 8));
 	}
 
-	void    SetRawColor(int color32);
-	int     GetRawColor() const;
-	void    SetColor(int _r, int _g, int _b, int _a = 0);
-	void    SetColor(float _r, float _g, float _b, float _a = 0);
-	void	SetColor(float* Color);
-	void    GetColor(int &_r, int &_g, int &_b, int &_a) const;
+	void    setrawcolor(int color32);
+	int     getrawcolor() const;
+	void    setcolor(int _r, int _g, int _b, int _a = 0);
+	void    setcolor(float _r, float _g, float _b, float _a = 0);
+	void	setcolor(float* color);
+	void    getcolor(int &_r, int &_g, int &_b, int &_a) const;
 
-	int r() const { return _CColor[0]; }
-	int g() const { return _CColor[1]; }
-	int b() const { return _CColor[2]; }
-	int a() const { return _CColor[3]; }
+	int r() const { return _ccolor[0]; }
+	int g() const { return _ccolor[1]; }
+	int b() const { return _ccolor[2]; }
+	int a() const { return _ccolor[3]; }
 
-	void SetAlpha(int alpha) { _CColor[3] = alpha; }
+	void setalpha(int alpha) { _ccolor[3] = alpha; }
 
 	unsigned char &operator[](int index)
 	{
-		return _CColor[index];
+		return _ccolor[index];
 	}
 	const unsigned char &operator[](int index) const
 	{
-		return _CColor[index];
+		return _ccolor[index];
 	}
 
-	bool operator==(const Color &rhs) const;
-	bool operator!=(const Color &rhs) const;
-	Color &operator=(const Color &rhs);
+	bool operator==(const color &rhs) const;
+	bool operator!=(const color &rhs) const;
+	color &operator=(const color &rhs);
 
-	static Color Black;
-	static Color White;
-	static Color Red;
-	static Color Green;
-	static Color Blue;
+	static color black;
+	static color white;
+	static color red;
+	static color green;
+	static color blue;
 
-	unsigned char _CColor[4];
+	unsigned char _ccolor[4];
 };

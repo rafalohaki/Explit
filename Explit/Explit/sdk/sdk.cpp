@@ -1,7 +1,6 @@
 #include "sdk.hpp"
 c_sdk g_sdk;
 
-
 void c_sdk::on_inject()
 {
 #ifdef _DEBUG       

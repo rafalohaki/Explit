@@ -1,16 +1,16 @@
 #pragma once
 #include "spoint.hpp"
 
-class SRect
+class srect
 {
 public:
 	int left, top, right, bottom;
 
-	constexpr SRect() : left(0), top(0), right(0), bottom(0) { }
-	constexpr SRect(int lft, int tp, int rght, int bttm) : left(lft), top(tp), right(rght), bottom(bttm) { }
-	constexpr SRect(const SPoint& pt1, const SPoint& pt2) : left(pt1.x), top(pt1.y), right(pt2.x), bottom(pt2.y) { }
+	constexpr srect() : left(0), top(0), right(0), bottom(0) { }
+	constexpr srect(int lft, int tp, int rght, int bttm) : left(lft), top(tp), right(rght), bottom(bttm) { }
+	constexpr srect(const spoint& pt1, const spoint& pt2) : left(pt1.x), top(pt1.y), right(pt2.x), bottom(pt2.y) { }
 
-	constexpr SRect& operator +=(const SPoint& pt)
+	constexpr srect& operator +=(const spoint& pt)
 	{
 		this->top += pt.y;
 		this->bottom += pt.y;
@@ -18,7 +18,7 @@ public:
 		this->right += pt.x;
 		return *this;
 	}
-	constexpr SRect& operator -=(const SPoint& pt)
+	constexpr srect& operator -=(const spoint& pt)
 	{
 		this->top -= pt.y;
 		this->bottom -= pt.y;
@@ -27,14 +27,14 @@ public:
 		return *this;
 	}
 
-	constexpr int    Height() const { return this->bottom - this->top; }
-	constexpr int    Width()  const { return this->right - this->left; }
-	constexpr SPoint Pos()    const { return SPoint(left, top); }
-	constexpr SPoint Mid()    const { return SPoint((left + right) / 2, (top + bottom) / 2); }
+	constexpr int    height() const { return this->bottom - this->top; }
+	constexpr int    width()  const { return this->right - this->left; }
+	constexpr spoint pos()    const { return spoint(left, top); }
+	constexpr spoint mid()    const { return spoint((left + right) / 2, (top + bottom) / 2); }
 
-	constexpr bool ContainsPoint(const SPoint& pt) const
+	constexpr bool containspoint(const spoint& pt) const
 	{
-		const auto tmp = *this; /* Fixes some weird bux I had */
+		const auto tmp = *this; /* fixes some weird bux i had */
 		if (tmp.top > pt.y) return false;
 		if (tmp.bottom < pt.y) return false;
 		if (tmp.left > pt.x) return false;
@@ -42,7 +42,7 @@ public:
 		return true;
 	}
 
-	constexpr void Scissor(const SRect& rc)
+	constexpr void scissor(const srect& rc)
 	{
 		const auto tmp = this; /* same with the fix */
 		if (tmp->top < rc.top)    tmp->top = rc.top;

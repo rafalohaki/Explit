@@ -1,4 +1,4 @@
-#include "vmatrix.hpp"
+#include "VMatrix.hpp"
 
 //-----------------------------------------------------------------------------
 // VMatrix inlines.
@@ -88,7 +88,7 @@ inline void VMatrix::Init(const matrix3x4_t& matrix3x4)
 //-----------------------------------------------------------------------------
 // Vector3DMultiplyPosition treats src2 as if it's a point (adds the translation)
 //-----------------------------------------------------------------------------
-// NJS: src2 is passed in as a full vector rather than a reference to prevent the need
+// NJS: src2 is passed in as a full Vector rather than a reference to prevent the need
 // for 2 branches and a potential copy in the body.  (ie, handling the case when the src2
 // reference is the same as the dst reference ).
 inline void Vector3DMultiplyPosition(const VMatrix& src1, const Vector& src2, Vector& dst)

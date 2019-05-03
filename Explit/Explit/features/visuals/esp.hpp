@@ -3,8 +3,8 @@
 
 class c_esp {
 private:
-	RECT get_boundbox(C_BaseEntity* pent);
-	void draw_players(C_BaseEntity* pplayer, RECT box);
+	RECT get_boundbox(c_base_entity* pent);
+	void draw_players(c_base_entity* pplayer, RECT box);
 public:
 	void start();
 };

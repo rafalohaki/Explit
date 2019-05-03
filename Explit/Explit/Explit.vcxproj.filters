@@ -52,6 +52,9 @@
     <Filter Include="sdk\config">
       <UniqueIdentifier>{72c62355-e523-4c80-9aff-e3ab162d03bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="sdk\misc\valve">
+      <UniqueIdentifier>{e62c168b-71c3-49b8-9086-88a339ca4678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DLLMain.cpp" />
@@ -79,20 +82,11 @@
     <ClCompile Include="sdk\misc\color.cpp">
       <Filter>sdk\misc</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\utils\drawmanager\drawmanager.cpp">
-      <Filter>sdk\utils\drawmanager</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\hooks\hooks.cpp">
       <Filter>sdk\hooks</Filter>
     </ClCompile>
     <ClCompile Include="sdk\menu\menu.cpp">
       <Filter>sdk\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\netvarmanager\netvarmanager.cpp">
-      <Filter>sdk\netvarmanager</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\misc\baseentity.cpp">
-      <Filter>sdk\misc</Filter>
     </ClCompile>
     <ClCompile Include="features\visuals\esp.cpp">
       <Filter>features\visuals</Filter>
@@ -102,6 +96,18 @@
     </ClCompile>
     <ClCompile Include="sdk\config\config.cpp">
       <Filter>sdk\config</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\misc\c_base_weapon.cpp">
+      <Filter>sdk\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\misc\c_base_entity.cpp">
+      <Filter>sdk\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\utils\drawmanager\draw_manager.cpp">
+      <Filter>sdk\utils\drawmanager</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\netvarmanager\netvar_manager.cpp">
+      <Filter>sdk\netvarmanager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,35 +132,11 @@
     <ClInclude Include="sdk\interfaces\interfaces.hpp">
       <Filter>sdk\interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\misc\iappsystem.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\interfaces\valve\isurface.hpp">
-      <Filter>sdk\interfaces\valve</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\interfaces\valve\ipanel.hpp">
-      <Filter>sdk\interfaces\valve</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\math\vector2d.hpp">
       <Filter>sdk\math</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\interfaces\valve\globalvars.hpp">
-      <Filter>sdk\interfaces\valve</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\utils\utils.hpp">
       <Filter>sdk\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\clientclass.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\classid.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\recv.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\iclientnetworkable.hpp">
-      <Filter>sdk\misc</Filter>
     </ClInclude>
     <ClInclude Include="sdk\math\qangle.hpp">
       <Filter>sdk\math</Filter>
@@ -165,56 +147,14 @@
     <ClInclude Include="sdk\math\vector.hpp">
       <Filter>sdk\math</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\interfaces\valve\ivengineclient.hpp">
-      <Filter>sdk\interfaces\valve</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\utils\drawmanager\drawmanager.hpp">
-      <Filter>sdk\utils\drawmanager</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\misc\color.hpp">
       <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\interfaces\valve\ibaseclientdll.hpp">
-      <Filter>sdk\interfaces\valve</Filter>
     </ClInclude>
     <ClInclude Include="sdk\hooks\hooks.hpp">
       <Filter>sdk\hooks</Filter>
     </ClInclude>
     <ClInclude Include="sdk\menu\menu.hpp">
       <Filter>sdk\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\ihandleentity.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\basehandle.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\iclientmode.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\iclientrenderable.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\iclientthinkable.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\icollideable.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\iclientunknown.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\interfaces\valve\icliententitylist.hpp">
-      <Filter>sdk\interfaces\valve</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\icliententity.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\netvarmanager\netvarmanager.hpp">
-      <Filter>sdk\netvarmanager</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\misc\baseentity.hpp">
-      <Filter>sdk\misc</Filter>
     </ClInclude>
     <ClInclude Include="features\visuals\esp.hpp">
       <Filter>features\visuals</Filter>
@@ -234,11 +174,83 @@
     <ClInclude Include="sdk\math\srect.hpp">
       <Filter>sdk\math</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\misc\itemdefinitionindex.hpp">
-      <Filter>sdk\misc</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\config\config.hpp">
       <Filter>sdk\config</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\iv_engine_client.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\i_global_vars.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\c_base_weapon.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\c_base_entity.hpp">
+      <Filter>sdk\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\i_client_entity_list.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\i_panel.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\i_surface.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\utils\drawmanager\draw_manager.hpp">
+      <Filter>sdk\utils\drawmanager</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\netvarmanager\netvar_manager.hpp">
+      <Filter>sdk\netvarmanager</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\i_base_client_dll.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\c_base_handle.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\class_id.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\client_class.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\i_app_system.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\i_client_entity.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\i_client_mode.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\i_client_networkable.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\i_client_renderable.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\i_client_thinkable.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\i_client_unknown.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\i_collideable.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\i_handle_entity.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\item_definition_index.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\life_state.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\recv.hpp">
+      <Filter>sdk\misc\valve</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -62,22 +62,22 @@ void c_menu::draw_watermark()
 {
 	const auto chrono_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 	const auto time = ctime(&chrono_time);
-	auto fps = static_cast<int>(1.f / g_interfaces.p_globalvars->frametime);
+	auto fps = static_cast<int>(1.f / g_interfaces.p_globalvars->frame_time);
 	int width, height;
-	g_interfaces.p_engine->GetScreenSize(width, height);
+	g_interfaces.p_engine->get_screen_size(width, height);
 	
-	g_draw.fill_rect(width - 280, 20, 260, 28, Color(1, 1, 1, 255));
-	g_draw.fill_rect(width - 279, 21, 258, 26, Color(51, 51, 51, 255));
-	g_draw.fill_rect(width - 278, 22, 256, 24, Color(41, 41, 41, 255));
-	g_draw.fill_rect(width - 277, 23, 254, 22, Color(51, 51, 51, 255));
-	g_draw.fill_rect(width - 276, 24, 252, 20, Color(1, 1, 1, 255));
-	g_draw.fill_rect(width - 275, 25, 250, 18, Color(31, 31, 31, 255));
-	g_draw.fill_rect(width - 275, 42, 250, 1, Color(255, 114, 111, 255));
+	g_draw.fill_rect(width - 280, 20, 260, 28, color(1, 1, 1, 255));
+	g_draw.fill_rect(width - 279, 21, 258, 26, color(51, 51, 51, 255));
+	g_draw.fill_rect(width - 278, 22, 256, 24, color(41, 41, 41, 255));
+	g_draw.fill_rect(width - 277, 23, 254, 22, color(51, 51, 51, 255));
+	g_draw.fill_rect(width - 276, 24, 252, 20, color(1, 1, 1, 255));
+	g_draw.fill_rect(width - 275, 25, 250, 18, color(31, 31, 31, 255));
+	g_draw.fill_rect(width - 275, 42, 250, 1, color(255, 85, 85, 255));
 
-	const auto connected = g_interfaces.g_localplayer && g_interfaces.p_engine->IsInGame() && g_interfaces.p_engine->IsConnected();
-	const auto ping_str = connected ? g_utils.stringer(static_cast<int>(g_interfaces.p_engine->GetNetChannelInfo()->GetAvgLatency(0) * 1000)) : "0";
+	const auto connected = g_interfaces.g_localplayer && g_interfaces.p_engine->is_in_game() && g_interfaces.p_engine->is_connected();
+	const auto ping_str = connected ? g_utils.stringer(static_cast<int>(g_interfaces.p_engine->get_net_channel_info()->get_avg_latency(0) * 1000)) : "0";
 
-	g_draw.string(width - 202, 27, Color(255, 255, 255), g_draw.menu, true, g_utils.stringer(time, "  FPS:", fps, "  PING:",ping_str,"ms"));
+	g_draw.string(width - 271, 27, color(255, 255, 255), g_draw.menu, false , g_utils.stringer(time, "  FPS:", fps, "  PING:", ping_str, "ms"));
 	
 }
 
@@ -106,9 +106,11 @@ void c_menu::draw_visuals()
 		zgui::combobox("Health", std::vector<std::string>{"Off", "Bar", "Text", "Bar+Text"}, g_config.settings.visuals.esp.health);
 		zgui::combobox("Armor", std::vector<std::string>{"Off", "Bar", "Text", "Bar+Text"}, g_config.settings.visuals.esp.armor);
 		zgui::checkbox("Money", g_config.settings.visuals.esp.money);
-		zgui::next_column(0,220);
-		zgui::checkbox("testt", g_config.settings.visuals.esp.money);
-		zgui::next_column(0, 201);
+		zgui::checkbox("Weapon", g_config.settings.visuals.esp.weapon);
+		zgui::checkbox("Ammo", g_config.settings.visuals.esp.ammo);
+		zgui::checkbox("Snaplines", g_config.settings.visuals.esp.snaplines);
+		zgui::checkbox("Skeleton", g_config.settings.visuals.esp.skeletons);
+		zgui::checkbox("Vulnerability", g_config.settings.visuals.esp.vulnerability);
 		zgui::multi_combobox("Filter", std::vector< zgui::multi_select_item >{ { "Local", &g_config.settings.visuals.esp.local }, { "Enemy", &g_config.settings.visuals.esp.enemies }, { "Team", &g_config.settings.visuals.esp.team }, { "Weapons", &g_config.settings.visuals.esp.weapons } });
 
 	}

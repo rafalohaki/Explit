@@ -167,18 +167,18 @@ public:
 	Vector  GetTranslation() const;
 
 
-	// Matrix->vector operations.
+	// Matrix->Vector operations.
 public:
-	// Multiply by a 3D vector (same as operator*).
+	// Multiply by a 3D Vector (same as operator*).
 	void  V3Mul(const Vector &vIn, Vector &vOut) const;
 
-	// Multiply by a 4D vector.
+	// Multiply by a 4D Vector.
 	//void  V4Mul( const Vector4D &vIn, Vector4D &vOut ) const;
 
 	// Applies the rotation (ignores translation in the matrix). (This just calls VMul3x3).
 	Vector  ApplyRotation(const Vector &vVec) const;
 
-	// Multiply by a vector (divides by w, assumes input w is 1).
+	// Multiply by a Vector (divides by w, assumes input w is 1).
 	Vector  operator*(const Vector &vVec) const;
 
 	// Multiply by the upper 3x3 part of the matrix (ie: only apply rotation).
@@ -246,7 +246,7 @@ inline void MatrixAngles(const matrix3x4_t& matrix, float *angles)
 
 	//
 	// Extract the basis vectors from the matrix. Since we only need the Z
-	// component of the up vector, we don't get X and Y.
+	// component of the up Vector, we don't get X and Y.
 	//
 	forward[0] = matrix[0][0];
 	forward[1] = matrix[1][0];

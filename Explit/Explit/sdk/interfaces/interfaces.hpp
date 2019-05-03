@@ -4,13 +4,13 @@
 class c_interfaces {
 public:
 	c_interfaces();
-	CGlobalVarsBase* p_globalvars;
-	ISurface* p_surface;
-	IPanel* p_panel;
-	IVEngineClient* p_engine;
-	IBaseClientDLL* p_client;
-	IClientEntityList* p_entitylist;
-	C_BaseEntity* g_localplayer;
+	i_global_vars_base* p_globalvars;
+	i_surface* p_surface;
+	i_panel* p_panel;
+	iv_engine_client* p_engine;
+	i_base_client_dll* p_client;
+	i_client_entity_list* p_entitylist;
+	c_base_entity* g_localplayer;
 	void get_interfaces();
 private:
 	template <typename t>

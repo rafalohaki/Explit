@@ -1,70 +1,70 @@
 #include "color.hpp"
 
-Color::Color()
+color::color()
 {
 	*((int *)this) = 0;
 }
-Color::Color(int _r, int _g, int _b)
+color::color(int _r, int _g, int _b)
 {
-	SetColor(_r, _g, _b, 255);
+	setcolor(_r, _g, _b, 255);
 }
-Color::Color(zgui::color col)
+color::color(zgui::color col)
 {
-	SetColor(col.r, col.g, col.g, col.a);
+	setcolor(col.r, col.g, col.g, col.a);
 }
-Color::Color(int _r, int _g, int _b, int _a)
+color::color(int _r, int _g, int _b, int _a)
 {
-	SetColor(_r, _g, _b, _a);
+	setcolor(_r, _g, _b, _a);
 }
-void Color::SetRawColor(int color32)
+void color::setrawcolor(int color32)
 {
 	*((int *)this) = color32;
 }
-int Color::GetRawColor() const
+int color::getrawcolor() const
 {
 	return *((int *)this);
 }
-__inline void Color::SetColor(int _r, int _g, int _b, int _a)
+__inline void color::setcolor(int _r, int _g, int _b, int _a)
 {
-	_CColor[0] = (unsigned char)_r;
-	_CColor[1] = (unsigned char)_g;
-	_CColor[2] = (unsigned char)_b;
-	_CColor[3] = (unsigned char)_a;
+	_ccolor[0] = (unsigned char)_r;
+	_ccolor[1] = (unsigned char)_g;
+	_ccolor[2] = (unsigned char)_b;
+	_ccolor[3] = (unsigned char)_a;
 }
-__inline void Color::SetColor(float _r, float _g, float _b, float _a)
+__inline void color::setcolor(float _r, float _g, float _b, float _a)
 {
-	_CColor[0] = static_cast<unsigned char>(_r * 255.0f);
-	_CColor[1] = static_cast<unsigned char>(_g * 255.0f);
-	_CColor[2] = static_cast<unsigned char>(_b * 255.0f);
-	_CColor[3] = static_cast<unsigned char>(_a * 255.0f);
+	_ccolor[0] = static_cast<unsigned char>(_r * 255.0f);
+	_ccolor[1] = static_cast<unsigned char>(_g * 255.0f);
+	_ccolor[2] = static_cast<unsigned char>(_b * 255.0f);
+	_ccolor[3] = static_cast<unsigned char>(_a * 255.0f);
 }
-void Color::SetColor(float* Color)
+void color::setcolor(float* color)
 {
-	if (!Color)
+	if (!color)
 		return;
 
-	_CColor[0] = (unsigned char)(Color[0] * 255.f);
-	_CColor[1] = (unsigned char)(Color[1] * 255.f);
-	_CColor[2] = (unsigned char)(Color[2] * 255.f);
-	_CColor[3] = (unsigned char)(Color[3] * 255.f);
+	_ccolor[0] = (unsigned char)(color[0] * 255.f);
+	_ccolor[1] = (unsigned char)(color[1] * 255.f);
+	_ccolor[2] = (unsigned char)(color[2] * 255.f);
+	_ccolor[3] = (unsigned char)(color[3] * 255.f);
 }
-void Color::GetColor(int &_r, int &_g, int &_b, int &_a) const
+void color::getcolor(int &_r, int &_g, int &_b, int &_a) const
 {
-	_r = _CColor[0];
-	_g = _CColor[1];
-	_b = _CColor[2];
-	_a = _CColor[3];
+	_r = _ccolor[0];
+	_g = _ccolor[1];
+	_b = _ccolor[2];
+	_a = _ccolor[3];
 }
-bool Color::operator== (const Color &rhs) const
+bool color::operator== (const color &rhs) const
 {
 	return (*((int *)this) == *((int *)&rhs));
 }
-bool Color::operator!= (const Color &rhs) const
+bool color::operator!= (const color &rhs) const
 {
 	return !(operator==(rhs));
 }
-Color& Color::operator=(const Color &rhs)
+color& color::operator=(const color &rhs)
 {
-	SetRawColor(rhs.GetRawColor());
+	setrawcolor(rhs.getrawcolor());
 	return *this;
 }

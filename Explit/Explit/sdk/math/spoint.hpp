@@ -3,90 +3,90 @@
 
 
 
-class SPoint
+class spoint
 {
 public:
 	int x, y;
-	constexpr SPoint() : x(0), y(0) {}
-	constexpr SPoint(int posX, int posY) : x(posX), y(posY) {}
-	constexpr SPoint(const SPoint &pt) = default;
+	constexpr spoint() : x(0), y(0) {}
+	constexpr spoint(int posx, int posy) : x(posx), y(posy) {}
+	constexpr spoint(const spoint &pt) = default;
 
 
-	constexpr bool operator==(const SPoint& rhs) const
+	constexpr bool operator==(const spoint& rhs) const
 	{
 		if (this->x != rhs.x) return false;
 		if (this->y != rhs.y) return false;
 		return true;
 	}
 
-	constexpr bool operator!=(const SPoint& rhs) const
+	constexpr bool operator!=(const spoint& rhs) const
 	{
 		return !(rhs == *this);
 	}
 
-	constexpr SPoint& operator +=(const SPoint& p2)
+	constexpr spoint& operator +=(const spoint& p2)
 	{
 		this->x += p2.x;
 		this->y += p2.y;
 		return *this;
 	}
 
-	constexpr SPoint& operator -=(const SPoint& p2)
+	constexpr spoint& operator -=(const spoint& p2)
 	{
 		this->x -= p2.x;
 		this->y -= p2.y;
 		return *this;
 	}
 
-	constexpr SPoint operator +(const SPoint& point) const
+	constexpr spoint operator +(const spoint& point) const
 	{
 		auto tmp = *this;
 		return tmp += point;
 	}
 
-	constexpr SPoint operator -(const SPoint& point) const
+	constexpr spoint operator -(const spoint& point) const
 	{
 		auto tmp = *this;
 		return tmp -= point;
 	}
 
-	constexpr SPoint operator +(const int& val) const
+	constexpr spoint operator +(const int& val) const
 	{
-		SPoint tmp = *this;
+		spoint tmp = *this;
 		tmp.x += val;
 		tmp.y += val;
 		return tmp;
 	}
 
-	constexpr SPoint operator -(const int& val) const
+	constexpr spoint operator -(const int& val) const
 	{
-		SPoint tmp = *this;
+		spoint tmp = *this;
 		tmp.x -= val;
 		tmp.y -= val;
 		return tmp;
 	}
 
-	constexpr SPoint operator *(const int& val) const
+	constexpr spoint operator *(const int& val) const
 	{
-		SPoint tmp = *this;
+		spoint tmp = *this;
 		tmp.x *= val;
 		tmp.y *= val;
 		return tmp;
 	}
 
-	constexpr SPoint operator *(const float& val) const
+	constexpr spoint operator *(const float& val) const
 	{
-		SPoint tmp = *this;
+		spoint tmp = *this;
 		auto x = float(tmp.x),
 			y = float(tmp.y);
 		x *= val;
 		y *= val;
-		tmp.x = roundFloat(x);
-		tmp.y = roundFloat(y);
+		tmp.x = roundfloat(x);
+		tmp.y = roundfloat(y);
 		return tmp;
 	}
 private:
 
-	/* No constexpr in cmath yet */
-	constexpr int roundFloat(const float sx) const { return int(sx >= 0 ? x + 0.5f : x - 0.5f); }
+	/* no constexpr in cmath yet */
+	constexpr int roundfloat(const float sx) const { return int(sx >= 0 ? x + 0.5f : x - 0.5f); }
 };

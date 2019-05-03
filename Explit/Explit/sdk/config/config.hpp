@@ -9,6 +9,7 @@ public:
 	void save();
 
 	struct {
+		bool unhook = false;
 		struct {
 			struct {
 				bool esp = true;
@@ -19,6 +20,11 @@ public:
 				int health = 0;
 				bool distance = false;
 				bool name = false;
+				bool weapon = false;
+				bool ammo = false;
+				bool skeletons = false;
+				bool snaplines = false;
+				bool vulnerability = false;
 				int armor = 0;
 				bool money = false;
 				bool enemies = true;
