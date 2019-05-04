@@ -6,10 +6,9 @@
 #include <string>
 #include <string_view>
 #include <type_traits>
-
-
+extern bool menu_open;
 // zgui by zxvnme (https://github.com/zxvnme) and all the community contributors
-#define ZGUI_VER "1.4.4" // the number after second dot is snapshot version.
+#define ZGUI_VER "1.4.5" // the number after second dot is snapshot version.
 /* =============================[general]===============================
  *
  * zgui is an simple framework created to help people with GUI rendering during their game hacking (but not only) journey.
@@ -88,7 +87,7 @@
  *
  *    IMPORTANT NOTE: poll_input(); HAS to be called before everything. Otherwise zgui will throw an exception or won't work properly.
  *
- *    poll_input("type_your_window_name") or poll_input(hwnd) is function used to start reading input from window we specify in function parameter (string_view) or (HWND)
+ *    poll_input("type_your_window_name") is function used to start reading input from window we specify in function parameter (string_view)
  *
  *    bad example:
  *      zgui::poll_input("");
@@ -99,19 +98,17 @@
  *    good example:
  *      zgui::poll_input("zgui directx9 example");
  *      zgui::poll_input("Minecraft 1.8.9");
- *      zgui::poll_input(hwnd); // HWND of your desktop application
  *
+ *    and now, code above will work fine if your window titles are "zgui directx9 example" or "Minecraft 1.8.9"
  *
- *    and now, code above will work fine if your window titles are "zgui directx9 example", "Minecraft 1.8.9" or when proper HWND is specified.
  *    ================================================================================================
  *
  * ================================================================================================
 */
 
-
 // For examples and function descriptions see zgui header file.
 namespace zgui {
-	extern bool open;
+
 	// Multi selectable item.
 	struct multi_select_item { std::string_view name; bool *value; };
 	// Two dimensional vector.
@@ -160,12 +157,48 @@ namespace zgui {
 		zgui_text_input_flags_password = 1 << 0
 	};
 
+	// zgui controls enumeration.
+	  // WIP
+	enum zgui_controls
+	{
+		zgui_checkbox = 1,
+		zgui_toggle_button,
+		zgui_button,
+		zgui_key_bind,
+		zgui_text_input,
+		zgui_slider_int,
+		zgui_slider_float,
+		zgui_combobox,
+		zgui_multi_combobox,
+		zgui_listbox,
+		zgui_clickable_text,
+		zgui_text,
+		zgui_dummy
+	};
+
+	enum class zgui_render_type
+	{
+		zgui_line = 1,
+		zgui_rect,
+		zgui_filled_rect,
+		zgui_text
+	};
+
+	struct zgui_control_render_t
+	{
+		vec2 draw_position;
+		zgui_render_type render_type;
+		color color;
+		std::string text;
+		vec2 size;
+	};
+
 	struct gui_window_context_t
 	{
 		uint32_t blocking;
 		std::stack<vec2> cursor_pos;
-		vec2 size;
-		vec2 position = { 100,100 };
+		std::vector<zgui_control_render_t> render;
+		vec2 position, size;
 		vec2 next_cursor_pos;
 		bool dragging;
 		bool opened;
@@ -188,29 +221,37 @@ namespace zgui {
 	void begin_groupbox(std::string_view title, vec2 size = vec2{ 163,290 }) noexcept;
 	void end_groupbox() noexcept;
 
+	void checkbox(const char* id, bool& value) noexcept;
+
+	void toggle_button(const char* id, vec2 size, bool& value) noexcept;
+		
+	bool button(const char* id, vec2 size = vec2{ 147,18 }) noexcept;
+
+	bool tab_button(const char* id, vec2 size, bool value) noexcept;
+
+	void key_bind(const char* id, int& value) noexcept;
+
+	void text_input(const char* id, std::string& value, int max_length = 16, int flags = 0) noexcept;
+
 	void slider_int(const char* id, int min, int max, int& value) noexcept;
+
 	void slider_float(const char* id, float min, float max, float& value) noexcept;
 
 	void combobox(const char*, std::vector<std::string> items, int& value) noexcept;
+
 	void multi_combobox(const char* id, std::vector<multi_select_item> items) noexcept;
 
 	void listbox(const char* id, std::vector<multi_select_item> items) noexcept;
 
-	void checkbox(const char* id, bool& value) noexcept;
-	void toggle_button(const char* id, vec2 size, bool& value) noexcept;
-	bool button(const char* id, vec2 size = vec2{ 147,18 }) noexcept;
-	bool tab_button(const char* id, vec2 size, bool value) noexcept;
-
-	void key_bind(const char* id, int& value) noexcept;
-	void text_input(const char* id, std::string& value, int max_length = 16, int flags = 0) noexcept;
-
 	bool clickable_text(const char* id) noexcept;
+
 	void text(const char* text) noexcept;
+
 	void dummy() noexcept;
-	void push(vec2 push) noexcept;
 
 	void next_column(int pusher_x = 164, int pusher_y = 34) noexcept;
 
 	void same_line(float x_axis = -1) noexcept;
+
 	void backup_line() noexcept;
 }
