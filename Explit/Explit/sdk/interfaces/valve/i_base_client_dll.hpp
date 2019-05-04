@@ -9,10 +9,10 @@ public:
 	virtual int              connect(createinterfacefn appsystemfactory, i_global_vars_base *pglobals) = 0;
 	virtual int              disconnect(void) = 0;
 	virtual int              init(createinterfacefn appsystemfactory, i_global_vars_base *pglobals) = 0;
-	virtual void             postinit() = 0;
+	virtual void             post_init() = 0;
 	virtual void             shutdown(void) = 0;
-	virtual void             levelinitpreentity(char const* pmapname) = 0;
-	virtual void             levelinitpostentity() = 0;
-	virtual void             levelshutdown(void) = 0;
-	virtual client_class*    getallclasses(void) = 0;
+	virtual void             level_init_pre_entity(char const* pmapname) = 0;
+	virtual void             level_init_post_entity() = 0;
+	virtual void             level_shutdown(void) = 0;
+	virtual client_class*    get_all_classes(void) = 0;
 };

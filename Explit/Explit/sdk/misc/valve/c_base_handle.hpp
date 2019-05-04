@@ -23,12 +23,12 @@ public:
 
 	// even if this returns true, get() still can return return a non-null value.
 	// this just tells if the handle has been initted with any values.
-	bool isvalid() const;
+	bool is_valid() const;
 
-	int getentryindex() const;
-	int getserialnumber() const;
+	int get_entry_index() const;
+	int get_serial_number() const;
 
-	int toint() const;
+	int to_int() const;
 	bool operator !=(const c_base_handle &other) const;
 	bool operator ==(const c_base_handle &other) const;
 	bool operator ==(const i_handle_entity* pent) const;
@@ -80,22 +80,22 @@ inline void c_base_handle::term()
 	m_index = invalid_ehandle_index;
 }
 
-inline bool c_base_handle::isvalid() const
+inline bool c_base_handle::is_valid() const
 {
 	return m_index != invalid_ehandle_index;
 }
 
-inline int c_base_handle::getentryindex() const
+inline int c_base_handle::get_entry_index() const
 {
 	return m_index & ent_entry_mask;
 }
 
-inline int c_base_handle::getserialnumber() const
+inline int c_base_handle::get_serial_number() const
 {
 	return m_index >> num_ent_entry_bits;
 }
 
-inline int c_base_handle::toint() const
+inline int c_base_handle::to_int() const
 {
 	return (int)m_index;
 }

@@ -19,6 +19,8 @@ public:
 	int get_distance();
 	bool m_bhashelmet();
 	int m_armorvalue();
+	int m_howner();
+	int m_iteamnum();
 	bool is_player();
 	bool is_weapon();
 	bool is_nade();

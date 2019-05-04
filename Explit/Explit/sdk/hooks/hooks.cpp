@@ -7,7 +7,7 @@ void rect(int x, int y, int x2, int y2, zgui::color c) noexcept { g_draw.rect(x,
 void filled_rect(int x, int y, int x2, int y2, zgui::color c) noexcept { g_draw.fill_rect(x, y, x2, y2, c); }
 void text(int x, int y, zgui::color color, int font, bool center, const char* text) noexcept { g_draw.string(x, y, color, font, center, text); }
 void get_text_size(unsigned long font, const char* text, int& wide, int& tall) noexcept { g_draw.get_text_size(font, text, wide, tall); }
-float get_frametime() noexcept { return g_interfaces.p_globalvars->frame_time; }
+float get_frametime() noexcept { return g_interfaces.p_global_vars->frame_time; }
 #pragma endregion
 
 
@@ -15,8 +15,10 @@ void c_hooks::get_hooks()
 {
 	panel_hook = std::make_unique<vmt>(g_interfaces.p_panel);
 	surface_hook = std::make_unique<vmt>(g_interfaces.p_surface);
+	client_mode_hook = std::make_unique<vmt>(g_interfaces.p_client_mode);
 	panel_hook->hook(41, painttraverse);
-	//surface_hook->hook(67, LockCursor);
+	//client_mode_hook->hook(41, post_screen_effects);
+	//surface_hook->hook(67, lockcursor);
 	zgui::functions.draw_line = line;
 	zgui::functions.draw_rect = rect;
 	zgui::functions.draw_filled_rect = filled_rect;
@@ -29,9 +31,9 @@ void c_hooks::un_hooks()
 	panel_hook->unhook(41);
 	//surface_hook->unhook(67);
 }
-void __fastcall c_hooks::painttraverse(PVOID pPanels, int edx, unsigned int vguiPanel, bool forceRepaint, bool allowForce)
+void __fastcall  c_hooks::painttraverse(PVOID pPanels, int edx, unsigned int vguiPanel, bool forceRepaint, bool allowForce)
 {
-	static auto ohook = g_hooks.panel_hook->getorginal<painttraverse_t>(41);
+	static auto ohook = g_hooks.panel_hook->getorginal<painttraverse_fn>(41);
 	static uint32_t overlaypanel;
 	if (!overlaypanel)
 	{
@@ -49,20 +51,22 @@ void __fastcall c_hooks::painttraverse(PVOID pPanels, int edx, unsigned int vgui
 	if (overlaypanel == vguiPanel)
 	{
 		g_menu.draw();
-		g_interfaces.g_localplayer = static_cast<c_base_entity*>(g_interfaces.p_entitylist->get_client_entity((g_interfaces.p_engine->get_local_player())));
-		if (g_interfaces.g_localplayer && g_interfaces.p_engine->is_in_game() && g_interfaces.p_engine->is_connected())
+		g_interfaces.g_local_player = static_cast<c_base_entity*>(g_interfaces.p_entity_list->get_client_entity((g_interfaces.p_engine->get_local_player())));
+		if (g_interfaces.g_local_player && g_interfaces.p_engine->is_in_game() && g_interfaces.p_engine->is_connected())
 			g_esp.start();
-		//g_draw.fill_rect(20, 20, 20, 20, Color(255, 255, 255, 255));
 	}
 	ohook(pPanels, vguiPanel, forceRepaint, allowForce);
 }
-
-void __fastcall c_hooks::lockcursor(i_surface* thisptr, void* edx)
+//int __fastcall c_hooks::post_screen_effects(void *thisptr, void * _edx, int a1)
+//{
+//	static auto ohook = g_Hooks.pClientModeHook->GetOriginal<Effects_t>(44);
+//}
+void __fastcall  c_hooks::lockcursor(i_surface* thisptr, void* edx)
 {
-	static auto ohook = g_hooks.panel_hook->getorginal<lockcursor_t>(67);
+	static auto ohook = g_hooks.surface_hook->getorginal<LockCursor_t>(67);
 
-	if (!zgui::open)
-		return ohook(thisptr, edx);
+	if (!menu_open)
+		ohook(thisptr,edx);
 
 	g_interfaces.p_surface->unlockcursor();
 }

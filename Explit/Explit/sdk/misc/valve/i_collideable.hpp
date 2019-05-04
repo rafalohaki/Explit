@@ -24,9 +24,9 @@ public:
 	virtual Vector&				get_collision_origin() const = 0;
 	virtual QAngle&		        get_collision_angles() const = 0;
 	virtual const matrix3x4_t&  collision_to_world_transform() const = 0;
-	virtual solid_type_t         get_solid() const = 0;
+	virtual solid_type_t        get_solid() const = 0;
 	virtual int                 get_solid_flags() const = 0;
-	virtual i_client_unknown*     get_i_client_unknown() = 0;
+	virtual i_client_unknown*   get_i_client_unknown() = 0;
 	virtual int                 get_collision_group() const = 0;
 	virtual void                world_space_surrounding_bounds(Vector *pvecmins, Vector *pvecmaxs) = 0;
 	virtual bool                should_touch_trigger(int triggersolidflags) const = 0;

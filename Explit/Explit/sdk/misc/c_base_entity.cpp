@@ -20,6 +20,15 @@ std::string c_base_entity::get_name()
 	g_interfaces.p_engine->getplayerinfo(this->get_index(), &info);
 	return info.szname;
 }
+int c_base_entity::m_howner()
+{
+	return *reinterpret_cast<int*>((uintptr_t)this + 0x148);
+}
+int c_base_entity::m_iteamnum()
+{
+	static auto offset = c.netvar->get_offset("DT_BaseEntity", "m_iTeamNum");
+	return *reinterpret_cast<int*>((uintptr_t)this + offset);
+}
 int c_base_entity::m_ihealth()
 {
 	static auto offset = c.netvar->get_offset("DT_BasePlayer", "m_iHealth");
@@ -32,7 +41,7 @@ int c_base_entity::m_iaccount()
 }
 int c_base_entity::get_distance()
 {
-	const auto local_origin = g_interfaces.g_localplayer->m_vecorigin();
+	const auto local_origin = g_interfaces.g_local_player->m_vecorigin();
 	const auto player_origin = this->m_vecorigin();
 	return static_cast<int>(sqrt(pow(local_origin.x - player_origin.x, 2) + pow(local_origin.y - player_origin.y, 2) + pow(local_origin.z - player_origin.z, 2)) * 0.0254f);
 }
@@ -48,7 +57,7 @@ c_base_handle c_base_entity::m_hactiveweapon()
 }
 c_base_weapon* c_base_entity::get_weapon()
 {
-	return (c_base_weapon*)g_interfaces.p_entitylist->get_client_entity_from_handle((c_base_handle)m_hactiveweapon());
+	return (c_base_weapon*)g_interfaces.p_entity_list->get_client_entity_from_handle((c_base_handle)m_hactiveweapon());
 }
 int c_base_entity::m_armorvalue()
 {

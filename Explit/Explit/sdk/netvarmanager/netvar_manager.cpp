@@ -6,7 +6,7 @@ c_netvarmanager::c_netvarmanager()
 {
 	m_tables.clear();
 
-	client_class* client_class = g_interfaces.p_client->getallclasses();
+	client_class* client_class = g_interfaces.p_client->get_all_classes();
 	if (!client_class)
 		return;
 
@@ -46,7 +46,7 @@ recvvarproxyfn c_netvarmanager::getproxyfunction(const char *tablename, const ch
 	if (!recvprop)
 		return nullptr;
 
-	return recvprop->getproxyfn();
+	return recvprop->get_proxy_fn();
 }
 
 void c_netvarmanager::hookprop(const char *tablename, const char *propname, recvvarproxyfn function)
@@ -56,7 +56,7 @@ void c_netvarmanager::hookprop(const char *tablename, const char *propname, recv
 	if (!recvprop)
 		return;
 
-	recvprop->setproxyfn(function); //recvprop->m_proxyfn = function;
+	recvprop->set_proxy_fn(function); //recvprop->m_proxyfn = function;
 }
 
 int c_netvarmanager::get_prop(const char *tablename, const char *propname, recvprop **prop)
@@ -79,14 +79,14 @@ int c_netvarmanager::get_prop(recvtable *recv_table, const char *propname, recvp
 	for (int i = 0; i < recv_table->nprops; ++i)
 	{
 		recvprop* recvprop = &recv_table->pprops[i];
-		recvtable* child = recvprop->getdatatable();
+		recvtable* child = recvprop->get_data_table();
 
 		if (child && (child->nprops > 0))
 		{
 			int tmp = get_prop(child, propname, prop);
 
 			if (tmp)
-				extraoffset += (recvprop->getoffset() + tmp);
+				extraoffset += (recvprop->get_offset() + tmp);
 		}
 
 		if (_stricmp(recvprop->pvarname, propname))
@@ -95,7 +95,7 @@ int c_netvarmanager::get_prop(recvtable *recv_table, const char *propname, recvp
 		if (prop)
 			*prop = recvprop;
 
-		return (recvprop->getoffset() + extraoffset);
+		return (recvprop->get_offset() + extraoffset);
 	}
 
 	return extraoffset;
@@ -111,7 +111,7 @@ recvtable* c_netvarmanager::gettable(const char *tablename)
 		if (!table)
 			continue;
 
-		if (_stricmp(table->pnettablename, tablename) == 0)
+		if (_stricmp(table->pnet_table_name, tablename) == 0)
 			return table;
 	}
 

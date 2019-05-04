@@ -47,27 +47,27 @@ class i_client_mode
 {
 public:
 	virtual             ~i_client_mode() {}
-	virtual int         clientmodecsnormal(void *) = 0;
+	virtual int         client_mode_cs_normal(void *) = 0;
 	virtual void        init() = 0;
-	virtual void        initviewport() = 0;
+	virtual void        init_viewport() = 0;
 	virtual void        shutdown() = 0;
 	virtual void        enable() = 0;
 	virtual void        disable() = 0;
 	virtual void        layout() = 0;
-	virtual i_panel*     getviewport() = 0;
-	virtual void*       getviewportanimationcontroller() = 0;
-	virtual void        processinput(bool bactive) = 0;
-	virtual bool        shoulddrawdetailobjects() = 0;
-	virtual bool        shoulddrawentity(c_base_entity *pent) = 0;
-	virtual bool        shoulddrawlocalplayer(c_base_entity *pplayer) = 0;
-	virtual bool        shoulddrawparticles() = 0;
-	virtual bool        shoulddrawfog(void) = 0;
-	virtual void        overrideview(c_view_setup *psetup) = 0;
-	virtual int         keyinput(int down, int keynum, const char *pszcurrentbinding) = 0;
-	virtual void        startmessagemode(int imessagemodetype) = 0;
-	virtual i_panel*     getmessagepanel() = 0;
-	virtual void        overridemouseinput(float *x, float *y) = 0;
-	virtual bool        createmove(float flinputsampletime, void* usercmd) = 0;
-	virtual void        levelinit(const char *newmap) = 0;
-	virtual void        levelshutdown(void) = 0;
+	virtual i_panel*    get_viewport() = 0;
+	virtual void*       get_viewport_animation_controller() = 0;
+	virtual void        process_input(bool bactive) = 0;
+	virtual bool        should_draw_detail_objects() = 0;
+	virtual bool        should_draw_entity(c_base_entity *pent) = 0;
+	virtual bool        should_draw_local_player(c_base_entity *pplayer) = 0;
+	virtual bool        should_draw_particles() = 0;
+	virtual bool        should_draw_fog(void) = 0;
+	virtual void        override_view(c_view_setup *psetup) = 0;
+	virtual int         key_input(int down, int keynum, const char *pszcurrentbinding) = 0;
+	virtual void        start_message_mode(int imessagemodetype) = 0;
+	virtual i_panel*    get_message_panel() = 0;
+	virtual void        override_mouse_input(float *x, float *y) = 0;
+	virtual bool        creat_emove(float flinputsampletime, void* usercmd) = 0;
+	virtual void        level_init(const char *newmap) = 0;
+	virtual void        level_shutdown(void) = 0;
 };

@@ -3,13 +3,14 @@ c_interfaces g_interfaces;
 
 c_interfaces::c_interfaces()
 {
-	p_globalvars = nullptr;
+	p_global_vars = nullptr;
 	p_surface = nullptr;
 	p_panel = nullptr;
 	p_engine = nullptr;
 	p_client = nullptr;
-	p_entitylist = nullptr;
-	g_localplayer = nullptr;
+	p_entity_list = nullptr;
+	p_client_mode = nullptr;
+	g_local_player = nullptr;
 }
 
 void c_interfaces::get_interfaces()
@@ -18,8 +19,9 @@ void c_interfaces::get_interfaces()
 	p_client = get_interface<i_base_client_dll>("client_panorama.dll", "VClient");
 	p_engine = get_interface<iv_engine_client>("engine.dll", "VEngineClient");
 	p_surface = get_interface<i_surface>("vguimatsurface.dll", "VGUI_Surface");
-	p_entitylist = get_interface<i_client_entity_list>("client_panorama.dll", "VClientEntityList");
-	p_globalvars = **(i_global_vars_base***)((*(DWORD**)(p_client))[0] + 0x1B);
+	p_entity_list = get_interface<i_client_entity_list>("client_panorama.dll", "VClientEntityList");
+	p_global_vars = **reinterpret_cast<i_global_vars_base***>((*reinterpret_cast<uintptr_t**>(p_client))[0] + 0x1B);
+	p_client_mode = **reinterpret_cast<i_client_mode***>((*reinterpret_cast<uintptr_t**>(p_client))[10] + 5);
 }
 
 template<typename t>

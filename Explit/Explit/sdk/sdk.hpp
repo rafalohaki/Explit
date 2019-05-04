@@ -7,6 +7,7 @@
 #include <chrono>
 #include <map>
 #include <string>
+#include <algorithm>
 #include <windows.h>
 #include <stdio.h>
 #include <Psapi.h>

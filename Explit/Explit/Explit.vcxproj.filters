@@ -222,9 +222,6 @@
     <ClInclude Include="sdk\misc\valve\i_client_entity.hpp">
       <Filter>sdk\misc\valve</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\misc\valve\i_client_mode.hpp">
-      <Filter>sdk\misc\valve</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\misc\valve\i_client_networkable.hpp">
       <Filter>sdk\misc\valve</Filter>
     </ClInclude>
@@ -251,6 +248,9 @@
     </ClInclude>
     <ClInclude Include="sdk\misc\valve\recv.hpp">
       <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\i_client_mode.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

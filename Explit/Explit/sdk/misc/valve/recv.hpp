@@ -8,7 +8,7 @@ typedef enum
 	dpt_vectorxy,
 	dpt_string,
 	dpt_array,
-	dpt_datatable,
+	dpt_data_table,
 	dpt_int64,
 	dpt_numsendproptypes
 } sendproptype;
@@ -21,7 +21,7 @@ class dvariant;
 class crecvproxydata;
 
 //-----------------------------------------------------------------------------
-// pstruct = the base structure of the datatable this variable is in (like c_base_entity)
+// pstruct = the base structure of the data_table this variable is in (like c_base_entity)
 // pout    = the variable that this this proxy represents (like c_base_entity::somevalue).
 //
 // convert the network-standard-type value in value into your own format in pstruct/pout.
@@ -35,13 +35,13 @@ typedef void(*recvvarproxyfn)(const crecvproxydata *pdata, void *pstruct, void *
 typedef void(*arraylengthrecvproxyfn)(void *pstruct, int objectid, int currentarraylength);
 
 
-// note: datatable receive proxies work differently than the other proxies.
+// note: data_table receive proxies work differently than the other proxies.
 // pdata points at the object + the recv table's offset.
 // pout should be set to the location of the object to unpack the data table into.
 // if the parent object just contains the child object, the default proxy just does *pout = pdata.
 // if the parent object points at the child object, you need to dereference the pointer here.
-// note: don't ever return null from a datatable receive proxy function. bad things will happen.
-typedef void(*datatablerecvvarproxyfn)(const recvprop *pprop, void **pout, void *pdata, int objectid);
+// note: don't ever return null from a data_table receive proxy function. bad things will happen.
+typedef void(*data_tablerecvvarproxyfn)(const recvprop *pprop, void **pout, void *pdata, int objectid);
 
 class recvprop
 {
@@ -49,82 +49,82 @@ class recvprop
 public:
 	recvprop();
 
-	void                        initarray(int nelements, int elementstride);
+	void                        init_array(int nelements, int element_stride);
 
-	int                         getnumelements() const;
-	void                        setnumelements(int nelements);
+	int                         get_num_elements() const;
+	void                        set_num_elements(int nelements);
 
-	int                         getelementstride() const;
-	void                        setelementstride(int stride);
+	int                         get_element_stride() const;
+	void                        set_element_stride(int stride);
 
 	int                         getflags() const;
 
-	const char*                 getname() const;
-	sendproptype                gettype() const;
+	const char*                 get_name() const;
+	sendproptype                get_type() const;
 
-	recvtable*                  getdatatable() const;
-	void                        setdatatable(recvtable *ptable);
+	recvtable*                  get_data_table() const;
+	void                        set_data_table(recvtable *ptable);
 
-	recvvarproxyfn              getproxyfn() const;
-	void                        setproxyfn(recvvarproxyfn fn);
+	recvvarproxyfn              get_proxy_fn() const;
+	void                        set_proxy_fn(recvvarproxyfn fn);
 
-	datatablerecvvarproxyfn     getdatatableproxyfn() const;
-	void                        setdatatableproxyfn(datatablerecvvarproxyfn fn);
+	data_tablerecvvarproxyfn     get_data_table_proxy_fn() const;
+	void                        set_data_table_proxy_fn(data_tablerecvvarproxyfn fn);
 
-	int                         getoffset() const;
-	void                        setoffset(int o);
-
-	// arrays only.
-	recvprop*                   getarrayprop() const;
-	void                        setarrayprop(recvprop *pprop);
+	int                         get_offset() const;
+	void                        set_offset(int o);
 
 	// arrays only.
-	void                        setarraylengthproxy(arraylengthrecvproxyfn proxy);
-	arraylengthrecvproxyfn      getarraylengthproxy() const;
+	recvprop*                   get_array_prop() const;
+	void                        set_array_prop(recvprop *pprop);
 
-	bool                        isinsidearray() const;
-	void                        setinsidearray();
+	// arrays only.
+	void                        set_array_length_proxy(arraylengthrecvproxyfn proxy);
+	arraylengthrecvproxyfn      get_array_length_proxy() const;
+
+	bool                        is_inside_array() const;
+	void                        set_inside_array();
 
 	// some property types bind more data to the prop in here.
-	const void*                 getextradata() const;
-	void                        setextradata(const void *pdata);
+	const void*                 get_extra_data() const;
+	void                        set_extra_data(const void *pdata);
 
 	// if it's one of the numbered "000", "001", etc properties in an array, then
 	// these can be used to get its array property name for debugging.
-	const char*                 getparentarraypropname();
-	void                        setparentarraypropname(const char *parraypropname);
+	const char*                 get_parent_array_prop_name();
+	void                        set_parent_array_prop_name(const char *parraypropname);
 
 public:
 
 	const char                  *pvarname;
 	sendproptype                recvtype;
 	int                         flags;
-	int                         stringbuffersize;
+	int                         string_buffer_size;
 
 
 public:
 
-	bool                        binsidearray;        // set to true by the engine if this property sits inside an array.
+	bool                        binside_array;        // set to true by the engine if this property sits inside an array.
 
 												   // extra data that certain special property types bind to the property here.
-	const void *pextradata;
+	const void *pextra_data;
 
 	// if this is an array (dpt_array).
-	recvprop                    *parrayprop;
-	arraylengthrecvproxyfn      arraylengthproxy;
+	recvprop                    *parray_prop;
+	arraylengthrecvproxyfn      array_length_proxy;
 
-	recvvarproxyfn              proxyfn;
-	datatablerecvvarproxyfn     datatableproxyfn;    // for rdt_datatable.
+	recvvarproxyfn              proxy_fn;
+	data_tablerecvvarproxyfn     data_table_proxy_fn;    // for rdt_data_table.
 
-	recvtable                   *pdatatable;        // for rdt_datatable.
+	recvtable                   *pdata_table;        // for rdt_data_table.
 	int                         offset;
 
-	int                         elementstride;
+	int                         element_stride;
 	int                         nelements;
 
 	// if it's one of the numbered "000", "001", etc properties in an array, then
 	// these can be used to get its array property name for debugging.
-	const char                  *pparentarraypropname;
+	const char                  *pparent_array_prop_name;
 };
 
 class crecvdecoder;
@@ -140,18 +140,18 @@ public:
 
 	void                construct(recvprop *pprops, int nprops, const char *pnettablename);
 
-	int                 getnumprops();
-	recvprop*           getprop(int i);
+	int                 get_num_props();
+	recvprop*           get_prop(int i);
 
-	const char*         getname();
+	const char*         get_name();
 
 	// used by the engine while initializing array props.
-	void                setinitialized(bool binitialized);
-	bool                isinitialized() const;
+	void                set_initialized(bool binitialized);
+	bool                is_initialized() const;
 
 	// used by the engine.
-	void                setinmainlist(bool binlist);
-	bool                isinmainlist() const;
+	void                set_in_main_list(bool binlist);
+	bool                is_in_main_list() const;
 
 
 public:
@@ -164,78 +164,78 @@ public:
 	// will have their own decoders that include props for all their children).
 	crecvdecoder       *pdecoder;
 
-	const char         *pnettablename;    // the name matched between client and server.
+	const char         *pnet_table_name;    // the name matched between client and server.
 
 
 private:
 
 	bool                binitialized;
-	bool                binmainlist;
+	bool                bin_main_list;
 };
 
 
 
-inline int recvtable::getnumprops()
+inline int recvtable::get_num_props()
 {
 	return this->nprops;
 }
 
-inline recvprop* recvtable::getprop(int i)
+inline recvprop* recvtable::get_prop(int i)
 {
 	return &this->pprops[i];
 }
 
-inline const char* recvtable::getname()
+inline const char* recvtable::get_name()
 {
-	return this->pnettablename;
+	return this->pnet_table_name;
 }
 
-inline void recvtable::setinitialized(bool binitialized)
+inline void recvtable::set_initialized(bool binitialized)
 {
 	this->binitialized = binitialized;
 }
 
-inline bool recvtable::isinitialized() const
+inline bool recvtable::is_initialized() const
 {
 	return this->binitialized;
 }
 
-inline void recvtable::setinmainlist(bool binlist)
+inline void recvtable::set_in_main_list(bool binlist)
 {
-	this->binmainlist = binlist;
+	this->bin_main_list = binlist;
 }
 
-inline bool recvtable::isinmainlist() const
+inline bool recvtable::is_in_main_list() const
 {
-	return this->binmainlist;
+	return this->bin_main_list;
 }
 
 
-inline void recvprop::initarray(int nelements, int elementstride)
+inline void recvprop::init_array(int nelements, int element_stride)
 {
 	this->recvtype = dpt_array;
 	this->nelements = nelements;
-	this->elementstride = elementstride;
+	this->element_stride = element_stride;
 }
 
-inline int recvprop::getnumelements() const
+inline int recvprop::get_num_elements() const
 {
 	return this->nelements;
 }
 
-inline void recvprop::setnumelements(int nelements)
+inline void recvprop::set_num_elements(int nelements)
 {
 	this->nelements = nelements;
 }
 
-inline int recvprop::getelementstride() const
+inline int recvprop::get_element_stride() const
 {
-	return this->elementstride;
+	return this->element_stride;
 }
 
-inline void recvprop::setelementstride(int stride)
+inline void recvprop::set_element_stride(int stride)
 {
-	this->elementstride = stride;
+	this->element_stride = stride;
 }
 
 inline int recvprop::getflags() const
@@ -243,104 +243,104 @@ inline int recvprop::getflags() const
 	return this->flags;
 }
 
-inline const char* recvprop::getname() const
+inline const char* recvprop::get_name() const
 {
 	return this->pvarname;
 }
 
-inline sendproptype recvprop::gettype() const
+inline sendproptype recvprop::get_type() const
 {
 	return this->recvtype;
 }
 
-inline recvtable* recvprop::getdatatable() const
+inline recvtable* recvprop::get_data_table() const
 {
-	return this->pdatatable;
+	return this->pdata_table;
 }
 
-inline void recvprop::setdatatable(recvtable *ptable)
+inline void recvprop::set_data_table(recvtable *ptable)
 {
-	this->pdatatable = ptable;
+	this->pdata_table = ptable;
 }
 
-inline recvvarproxyfn recvprop::getproxyfn() const
+inline recvvarproxyfn recvprop::get_proxy_fn() const
 {
-	return this->proxyfn;
+	return this->proxy_fn;
 }
 
-inline void recvprop::setproxyfn(recvvarproxyfn fn)
+inline void recvprop::set_proxy_fn(recvvarproxyfn fn)
 {
-	this->proxyfn = fn;
+	this->proxy_fn = fn;
 }
 
-inline datatablerecvvarproxyfn recvprop::getdatatableproxyfn() const
+inline data_tablerecvvarproxyfn recvprop::get_data_table_proxy_fn() const
 {
-	return this->datatableproxyfn;
+	return this->data_table_proxy_fn;
 }
 
-inline void recvprop::setdatatableproxyfn(datatablerecvvarproxyfn fn)
+inline void recvprop::set_data_table_proxy_fn(data_tablerecvvarproxyfn fn)
 {
-	this->datatableproxyfn = fn;
+	this->data_table_proxy_fn = fn;
 }
 
-inline int recvprop::getoffset() const
+inline int recvprop::get_offset() const
 {
 	return this->offset;
 }
 
-inline void recvprop::setoffset(int o)
+inline void recvprop::set_offset(int o)
 {
 	this->offset = o;
 }
 
-inline recvprop* recvprop::getarrayprop() const
+inline recvprop* recvprop::get_array_prop() const
 {
-	return this->parrayprop;
+	return this->parray_prop;
 }
 
-inline void recvprop::setarrayprop(recvprop *pprop)
+inline void recvprop::set_array_prop(recvprop *pprop)
 {
-	this->parrayprop = pprop;
+	this->parray_prop = pprop;
 }
 
-inline void recvprop::setarraylengthproxy(arraylengthrecvproxyfn proxy)
+inline void recvprop::set_array_length_proxy(arraylengthrecvproxyfn proxy)
 {
-	this->arraylengthproxy = proxy;
+	this->array_length_proxy = proxy;
 }
 
-inline arraylengthrecvproxyfn recvprop::getarraylengthproxy() const
+inline arraylengthrecvproxyfn recvprop::get_array_length_proxy() const
 {
-	return this->arraylengthproxy;
+	return this->array_length_proxy;
 }
 
-inline bool recvprop::isinsidearray() const
+inline bool recvprop::is_inside_array() const
 {
-	return this->binsidearray;
+	return this->binside_array;
 }
 
-inline void recvprop::setinsidearray()
+inline void recvprop::set_inside_array()
 {
-	this->binsidearray = true;
+	this->binside_array = true;
 }
 
-inline const void* recvprop::getextradata() const
+inline const void* recvprop::get_extra_data() const
 {
-	return this->pextradata;
+	return this->pextra_data;
 }
 
-inline void recvprop::setextradata(const void *pdata)
+inline void recvprop::set_extra_data(const void *pdata)
 {
-	this->pextradata = pdata;
+	this->pextra_data = pdata;
 }
 
-inline const char* recvprop::getparentarraypropname()
+inline const char* recvprop::get_parent_array_prop_name()
 {
-	return this->pparentarraypropname;
+	return this->pparent_array_prop_name;
 }
 
-inline void    recvprop::setparentarraypropname(const char *parraypropname)
+inline void    recvprop::set_parent_array_prop_name(const char *parraypropname)
 {
-	this->pparentarraypropname = parraypropname;
+	this->pparent_array_prop_name = parraypropname;
 }
 
 namespace sdk::classes
@@ -353,7 +353,7 @@ namespace sdk::classes
 		dpt_vectorxy,
 		dpt_string,
 		dpt_array,
-		dpt_datatable,
+		dpt_data_table,
 		dpt_int64,
 		dpt_numsendproptypes
 	};

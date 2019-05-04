@@ -26,19 +26,19 @@ public:
 		_ccolor[3] = (unsigned char)((argb & 0xff000000) >> (3 * 8));
 	}
 
-	void    setrawcolor(int color32);
-	int     getrawcolor() const;
-	void    setcolor(int _r, int _g, int _b, int _a = 0);
-	void    setcolor(float _r, float _g, float _b, float _a = 0);
-	void	setcolor(float* color);
-	void    getcolor(int &_r, int &_g, int &_b, int &_a) const;
+	void    set_raw_color(int color32);
+	int     get_raw_color() const;
+	void    set_color(int _r, int _g, int _b, int _a = 0);
+	void    set_color(float _r, float _g, float _b, float _a = 0);
+	void	set_color(float* color);
+	void    get_color(int &_r, int &_g, int &_b, int &_a) const;
 
 	int r() const { return _ccolor[0]; }
 	int g() const { return _ccolor[1]; }
 	int b() const { return _ccolor[2]; }
 	int a() const { return _ccolor[3]; }
 
-	void setalpha(int alpha) { _ccolor[3] = alpha; }
+	void set_alpha(int alpha) { _ccolor[3] = alpha; }
 
 	unsigned char &operator[](int index)
 	{
@@ -52,12 +52,6 @@ public:
 	bool operator==(const color &rhs) const;
 	bool operator!=(const color &rhs) const;
 	color &operator=(const color &rhs);
-
-	static color black;
-	static color white;
-	static color red;
-	static color green;
-	static color blue;
 
 	unsigned char _ccolor[4];
 };

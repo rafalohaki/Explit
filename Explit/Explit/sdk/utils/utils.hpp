@@ -6,8 +6,6 @@
 
 
 class c_utils {
-private:
-	//std::string const& to_string(std::string const& s);
 public:
 	uintptr_t find_signature(const char* module, const char* signature);
 	template< typename ... Args >

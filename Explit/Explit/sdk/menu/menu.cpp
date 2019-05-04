@@ -33,7 +33,7 @@ void c_menu::draw()
 			misc = false;
 		}
 		zgui::same_line();
-		zgui::push({ -5,0 });
+		zgui::next_column( -5,0 );
 		if (zgui::tab_button("Visuals", { 165,30 }, visuals))
 		{
 			aimbot = false;
@@ -41,14 +41,14 @@ void c_menu::draw()
 			misc = false;
 		}
 		zgui::same_line();	
-		zgui::push({ -5,0 });
+		zgui::next_column( -5,0 );
 		if (zgui::tab_button("Misc", { 166,30 }, misc))
 		{
 			aimbot = false;
 			visuals = false;
 			misc = true;
 		}
-		zgui::push({ -327,15 });
+		zgui::next_column( -327,34 );
 		if (aimbot)draw_aimbot();
 		if (visuals)draw_visuals();
 		if (misc)draw_misc();
@@ -62,7 +62,7 @@ void c_menu::draw_watermark()
 {
 	const auto chrono_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 	const auto time = ctime(&chrono_time);
-	auto fps = static_cast<int>(1.f / g_interfaces.p_globalvars->frame_time);
+	auto fps = static_cast<int>(1.f / g_interfaces.p_global_vars->frame_time);
 	int width, height;
 	g_interfaces.p_engine->get_screen_size(width, height);
 	
@@ -74,7 +74,7 @@ void c_menu::draw_watermark()
 	g_draw.fill_rect(width - 275, 25, 250, 18, color(31, 31, 31, 255));
 	g_draw.fill_rect(width - 275, 42, 250, 1, color(255, 85, 85, 255));
 
-	const auto connected = g_interfaces.g_localplayer && g_interfaces.p_engine->is_in_game() && g_interfaces.p_engine->is_connected();
+	const auto connected = g_interfaces.g_local_player && g_interfaces.p_engine->is_in_game() && g_interfaces.p_engine->is_connected();
 	const auto ping_str = connected ? g_utils.stringer(static_cast<int>(g_interfaces.p_engine->get_net_channel_info()->get_avg_latency(0) * 1000)) : "0";
 
 	g_draw.string(width - 271, 27, color(255, 255, 255), g_draw.menu, false , g_utils.stringer(time, "  FPS:", fps, "  PING:", ping_str, "ms"));
@@ -111,7 +111,7 @@ void c_menu::draw_visuals()
 		zgui::checkbox("Snaplines", g_config.settings.visuals.esp.snaplines);
 		zgui::checkbox("Skeleton", g_config.settings.visuals.esp.skeletons);
 		zgui::checkbox("Vulnerability", g_config.settings.visuals.esp.vulnerability);
-		zgui::multi_combobox("Filter", std::vector< zgui::multi_select_item >{ { "Local", &g_config.settings.visuals.esp.local }, { "Enemy", &g_config.settings.visuals.esp.enemies }, { "Team", &g_config.settings.visuals.esp.team }, { "Weapons", &g_config.settings.visuals.esp.weapons } });
+		zgui::multi_combobox("Filter", std::vector< zgui::multi_select_item >{ { "Local", &g_config.settings.visuals.esp.local }, { "Enemy", &g_config.settings.visuals.esp.enemies }, { "Team", &g_config.settings.visuals.esp.team }, { "Weapons", &g_config.settings.visuals.esp.weapons }, { "Chickens", &g_config.settings.visuals.esp.chickens }});
 
 	}
 	zgui::end_groupbox();
