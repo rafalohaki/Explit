@@ -110,6 +110,7 @@ void c_menu::draw_visuals()
 		zgui::checkbox("Ammo", g_config.settings.visuals.esp.ammo);
 		zgui::checkbox("Snaplines", g_config.settings.visuals.esp.snaplines);
 		zgui::checkbox("Skeleton", g_config.settings.visuals.esp.skeletons);
+		zgui::checkbox("Visible Only", g_config.settings.visuals.esp.visible);
 		zgui::checkbox("Vulnerability", g_config.settings.visuals.esp.vulnerability);
 		zgui::multi_combobox("Filter", std::vector< zgui::multi_select_item >{ { "Local", &g_config.settings.visuals.esp.local }, { "Enemy", &g_config.settings.visuals.esp.enemies }, { "Team", &g_config.settings.visuals.esp.team }, { "Weapons", &g_config.settings.visuals.esp.weapons }, { "Chickens", &g_config.settings.visuals.esp.chickens }});
 
@@ -126,9 +127,12 @@ void c_menu::draw_visuals()
 
 	zgui::next_column();
 
-	zgui::begin_groupbox("Glow");
+	zgui::begin_groupbox("Glow", { 164, 290});
 	{
 		zgui::checkbox("Enable#3", g_config.settings.visuals.glow.glow);
+		zgui::checkbox("Visible Only#2", g_config.settings.visuals.glow.visible);
+		zgui::combobox("Glow Style", std::vector<std::string>{"0", "1", "2", "3"}, g_config.settings.visuals.glow.style);
+		zgui::multi_combobox("Filter#2", std::vector< zgui::multi_select_item >{ { "Local", &g_config.settings.visuals.glow.local }, { "Enemy", &g_config.settings.visuals.glow.enemy }, { "Team", &g_config.settings.visuals.glow.team }, { "Weapons", &g_config.settings.visuals.glow.weapons }, { "Chickens", &g_config.settings.visuals.glow.chickens }});
 	}
 	zgui::end_groupbox();
 }

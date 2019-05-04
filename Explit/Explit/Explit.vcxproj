@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClCompile Include="DLLMain.cpp" />
     <ClCompile Include="features\visuals\esp.cpp" />
+    <ClCompile Include="features\visuals\glow.cpp" />
     <ClCompile Include="json\jsoncpp.cpp" />
     <ClCompile Include="sdk\config\config.cpp" />
     <ClCompile Include="sdk\hooks\hooks.cpp" />
@@ -153,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="features\visuals\esp.hpp" />
+    <ClInclude Include="features\visuals\glow.hpp" />
     <ClInclude Include="json\json-forwards.hpp" />
     <ClInclude Include="json\json.hpp" />
     <ClInclude Include="sdk\config\config.hpp" />
@@ -179,6 +181,7 @@
     <ClInclude Include="sdk\misc\valve\class_id.hpp" />
     <ClInclude Include="sdk\misc\valve\client_class.hpp" />
     <ClInclude Include="sdk\misc\valve\c_base_handle.hpp" />
+    <ClInclude Include="sdk\misc\valve\c_glow_manager.hpp" />
     <ClInclude Include="sdk\misc\valve\item_definition_index.hpp" />
     <ClInclude Include="sdk\misc\valve\i_app_system.hpp" />
     <ClInclude Include="sdk\misc\valve\i_client_entity.hpp" />

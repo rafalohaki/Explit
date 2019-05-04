@@ -16,8 +16,8 @@ void c_hooks::get_hooks()
 	panel_hook = std::make_unique<vmt>(g_interfaces.p_panel);
 	surface_hook = std::make_unique<vmt>(g_interfaces.p_surface);
 	client_mode_hook = std::make_unique<vmt>(g_interfaces.p_client_mode);
-	panel_hook->hook(41, painttraverse);
-	//client_mode_hook->hook(41, post_screen_effects);
+	panel_hook->hook(41, paint_traverse);
+	client_mode_hook->hook(44, post_screen_effects);
 	//surface_hook->hook(67, lockcursor);
 	zgui::functions.draw_line = line;
 	zgui::functions.draw_rect = rect;
@@ -29,12 +29,14 @@ void c_hooks::get_hooks()
 void c_hooks::un_hooks()
 {
 	panel_hook->unhook(41);
+	client_mode_hook->unhook(44);
 	//surface_hook->unhook(67);
 }
-void __fastcall  c_hooks::painttraverse(PVOID pPanels, int edx, unsigned int vguiPanel, bool forceRepaint, bool allowForce)
+void __fastcall  c_hooks::paint_traverse(PVOID pPanels, int edx, unsigned int vguiPanel, bool forceRepaint, bool allowForce)
 {
-	static auto ohook = g_hooks.panel_hook->getorginal<painttraverse_fn>(41);
+	static auto ohook = g_hooks.panel_hook->getorginal<paint_traverse_fn>(41);
 	static uint32_t overlaypanel;
+
 	if (!overlaypanel)
 	{
 		const char* panel_name = g_interfaces.p_panel->get_name(vguiPanel);
@@ -51,19 +53,30 @@ void __fastcall  c_hooks::painttraverse(PVOID pPanels, int edx, unsigned int vgu
 	if (overlaypanel == vguiPanel)
 	{
 		g_menu.draw();
+
 		g_interfaces.g_local_player = static_cast<c_base_entity*>(g_interfaces.p_entity_list->get_client_entity((g_interfaces.p_engine->get_local_player())));
+
 		if (g_interfaces.g_local_player && g_interfaces.p_engine->is_in_game() && g_interfaces.p_engine->is_connected())
 			g_esp.start();
 	}
+
 	ohook(pPanels, vguiPanel, forceRepaint, allowForce);
 }
-//int __fastcall c_hooks::post_screen_effects(void *thisptr, void * _edx, int a1)
-//{
-//	static auto ohook = g_Hooks.pClientModeHook->GetOriginal<Effects_t>(44);
-//}
-void __fastcall  c_hooks::lockcursor(i_surface* thisptr, void* edx)
+int __fastcall c_hooks::post_screen_effects(void *thisptr, void * _edx, int a1)
 {
-	static auto ohook = g_hooks.surface_hook->getorginal<LockCursor_t>(67);
+	static auto ohook = g_hooks.client_mode_hook->getorginal<post_screen_effects_fn>(44);
+
+	if(!g_interfaces.p_engine->is_in_game() || !g_interfaces.p_engine->is_connected())
+		return ohook(thisptr, _edx, a1);
+
+	if (g_config.settings.visuals.glow.glow)
+		g_glow.start();
+
+	return ohook(thisptr, _edx, a1);
+}
+void __fastcall  c_hooks::lock_cursor(i_surface* thisptr, void* edx)
+{
+	static auto ohook = g_hooks.surface_hook->getorginal<lock_cursor_fn>(67);
 
 	if (!menu_open)
 		ohook(thisptr,edx);

@@ -21,6 +21,7 @@ public:
 				bool distance = false;
 				bool name = false;
 				bool weapon = false;
+				bool visible = false;
 				bool ammo = false;
 				bool skeletons = false;
 				bool snaplines = false;
@@ -39,7 +40,14 @@ public:
 
 			}chams;
 			struct {
-				bool glow = true;
+				bool glow = false;
+				bool local = false;
+				bool chickens = false;
+				bool weapons = false;
+				bool team = false;
+				bool visible = false;
+				bool enemy = false;
+				int style = 0;
 			}glow;
 		}visuals;
 		struct {

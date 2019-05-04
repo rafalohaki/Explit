@@ -50,6 +50,7 @@
 #include "netvarmanager/netvar_manager.hpp"
 #include "misc/c_base_entity.hpp"
 #include "misc/c_base_weapon.hpp"
+#include "misc/valve/c_glow_manager.hpp"
 
 #include "interfaces/valve/i_global_vars.hpp"
 #include "interfaces/valve/i_panel.hpp"
@@ -62,6 +63,7 @@
 #include "interfaces/interfaces.hpp"
 #include "utils/vmt/vmt.hpp"
 #include "../features/visuals/esp.hpp"
+#include "../features/visuals/glow.hpp"
 
 #include "hooks/hooks.hpp"
 

@@ -79,7 +79,7 @@ bool c_base_entity::is_player()
 }
 bool c_base_entity::is_weapon()
 {
-	return vfunc<163, bool>(this);
+	return vfunc<163, bool>(this) && m_howner() == -1;
 }
 bool c_base_entity::is_nade()
 {

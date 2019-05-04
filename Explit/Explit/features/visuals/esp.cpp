@@ -5,7 +5,7 @@ void c_esp::start()
 {
 	if (g_config.settings.visuals.esp.esp)
 	{
-		for (int i = 1; i < g_interfaces.p_entity_list->get_highest_entity_index(); i++) {
+		for (int i = 1; i <= g_interfaces.p_entity_list->get_highest_entity_index(); i++) {
 			const auto entity = reinterpret_cast<c_base_entity*>(g_interfaces.p_entity_list->get_client_entity((i)));
 			if (!entity)
 				continue;
@@ -19,7 +19,7 @@ void c_esp::start()
 			if (IsRectEmpty(&box))
 				continue;
 
-			if (entity->is_weapon() && entity->m_howner() == -1) 
+			if (g_config.settings.visuals.esp.weapons && entity->is_weapon()) 
 				draw_weapons(entity, box);
 			if(g_config.settings.visuals.esp.chickens && entity->is_chicken())
 				draw_chickens(entity, box);
@@ -287,10 +287,6 @@ void c_esp::draw_chickens(c_base_entity* pplayer, RECT box)
 	{
 		g_draw.fill_rect(box.left + 1, box.top + 1, box.right - box.left - 2, box.bottom - box.top - 2, color(1, 1, 1, 130));
 	}
-	if (g_config.settings.visuals.esp.name)
-	{
-		g_draw.string(box.left + (box.right - box.left) / 2, box.top - 13, color(255, 255, 255), g_draw.esp, true, pplayer->get_name());
-	}
 	if (g_config.settings.visuals.esp.distance)
 	{
 		g_draw.string(box.right + 3, box.top - 1, color(255, 255, 255), g_draw.esp, false, g_utils.stringer(pplayer->get_distance(), "m"));
@@ -375,17 +371,17 @@ void c_esp::draw_weapons(c_base_entity* pentity, RECT box)
 	}
 	if (g_config.settings.visuals.esp.name)
 	{
-		const auto weapon = pentity->get_weapon();
-		g_draw.string(box.left + (box.right - box.left) / 2, weapon_position, color(255, 255, 255), g_draw.esp, true, g_utils.stringer("[", weapon->get_weapon_info()->m_weaponname, "]").erase(1, 7));
+		const auto weapon_name = reinterpret_cast<c_base_weapon*>(pentity)->get_weapon_info()->m_weaponname;
+		g_draw.string(box.left + (box.right - box.left) / 2, weapon_position, color(255, 255, 255), g_draw.esp, true, g_utils.stringer("[", weapon_name, "]").erase(1, 7));
 		weapon_position += 12;
 	}
 	if (g_config.settings.visuals.esp.ammo)
 	{
-		const auto weapon = pentity->get_weapon();
-		const auto max_clip = weapon->get_weapon_info()->m_maxclip;
+		const auto iclip = reinterpret_cast<c_base_weapon*>(pentity)->m_iclip1();
+		const auto max_clip = reinterpret_cast<c_base_weapon*>(pentity)->get_weapon_info()->m_maxclip;
 		if (max_clip != -1)
 		{
-			g_draw.string(box.left + (box.right - box.left) / 2, weapon_position, color(255, 255, 255), g_draw.esp, true, g_utils.stringer("[", weapon->m_iclip1(), "/", max_clip, "]"));
+			g_draw.string(box.left + (box.right - box.left) / 2, weapon_position, color(255, 255, 255), g_draw.esp, true, g_utils.stringer("[", iclip, "/", max_clip, "]"));
 			weapon_position += 12;
 		}
 	}
