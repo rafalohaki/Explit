@@ -1,14 +1,10 @@
 #include "config.hpp"
 
-c_config g_config("config.json");
+c_config g_config("C:\Explit\Configs\config.json");
 
 c_config::c_config(const std::string config_path)
 {
-	char current_path[MAX_PATH] = "";
-	GetModuleFileNameA(NULL, current_path, MAX_PATH);
-	PathRemoveFileSpecA(current_path);
-	PathAddBackslashA(current_path);
-	path += config_path;
+	path = config_path;
 }
 
 void c_config::save()
