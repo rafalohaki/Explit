@@ -4,9 +4,9 @@
 class c_config
 {
 public:
-	c_config(const std::string config_path);
-	void load();
-	void save();
+	c_config(const std::string directory_path);
+	void load(const std::string config_name);
+	void save(const std::string config_name);
 
 	struct {
 		bool unhook = false;
@@ -55,6 +55,6 @@ public:
 		}misc;
 	} settings;
 private:
-	std::string path;
+	std::string directory_path;
 };
 extern c_config g_config;
