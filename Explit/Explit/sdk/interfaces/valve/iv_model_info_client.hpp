@@ -35,7 +35,7 @@ public:
 	virtual void                            unused0() {};
 	virtual renderable_translucency_type_t    computetranslucencytype(const model_t *model, int nskin, int nbody) = 0;
 	virtual int                             getmodelmaterialcount(const model_t* model) const = 0;
-	virtual void                            getmodelmaterials(const model_t *model, int count, imaterial** ppmaterial) = 0;
+	virtual void                            getmodelmaterials(const model_t *model, int count, i_material** ppmaterial) = 0;
 	virtual bool                            ismodelvertexlit(const model_t *model) const = 0;
 	virtual const char*                     getmodelkeyvaluetext(const model_t *model) = 0;
 	virtual bool                            getmodelkeyvalue(const model_t *model, c_utl_buffer &buf) = 0;

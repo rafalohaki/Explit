@@ -110,7 +110,13 @@ void c_config::save(const std::string name)
 	save["Explit - Config"]["Visuals"]["Glow"]["Colors"]["Vulnerability"][1] = settings.visuals.glow.colors.vulnerability[1];
 	save["Explit - Config"]["Visuals"]["Glow"]["Colors"]["Vulnerability"][2] = settings.visuals.glow.colors.vulnerability[2];
 
-	save["Explit - Config"]["Misc"]["Other"]["Watermarl"] = settings.misc.watermark;
+	save["Explit - Config"]["Visuals"]["DLights"]["Enable"] = settings.visuals.dlights.enable;
+	save["Explit - Config"]["Visuals"]["DLights"]["Enemies"] = settings.visuals.dlights.enemy;
+	save["Explit - Config"]["Visuals"]["DLights"]["Local"] = settings.visuals.dlights.local;
+	save["Explit - Config"]["Visuals"]["DLights"]["Team"] = settings.visuals.dlights.team;
+	save["Explit - Config"]["Visuals"]["DLights"]["Radius"] = settings.visuals.dlights.radius;
+
+	save["Explit - Config"]["Visuals"]["Others"]["Watermark"] = settings.visuals.others.watermark;
 
 	out << save;
 

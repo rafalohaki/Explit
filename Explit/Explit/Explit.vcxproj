@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DLLMain.cpp" />
+    <ClCompile Include="features\visuals\dlight.cpp" />
     <ClCompile Include="features\visuals\esp.cpp" />
     <ClCompile Include="features\visuals\glow.cpp" />
     <ClCompile Include="json\jsoncpp.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="zgui\zgui.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="features\visuals\dlight.hpp" />
     <ClInclude Include="features\visuals\esp.hpp" />
     <ClInclude Include="features\visuals\glow.hpp" />
     <ClInclude Include="json\json-forwards.hpp" />
@@ -161,6 +163,7 @@
     <ClInclude Include="sdk\config\config.hpp" />
     <ClInclude Include="sdk\hooks\hooks.hpp" />
     <ClInclude Include="sdk\interfaces\interfaces.hpp" />
+    <ClInclude Include="sdk\interfaces\valve\iv_engine_effects.hpp" />
     <ClInclude Include="sdk\interfaces\valve\iv_model_info_client.hpp" />
     <ClInclude Include="sdk\interfaces\valve\iv_model_render.hpp" />
     <ClInclude Include="sdk\interfaces\valve\i_engine_trace.hpp" />

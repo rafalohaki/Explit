@@ -57,7 +57,10 @@ void __fastcall  c_hooks::paint_traverse(PVOID pPanels, int edx, unsigned int vg
 		g_interfaces.g_local_player = static_cast<c_base_entity*>(g_interfaces.p_entity_list->get_client_entity((g_interfaces.p_engine->get_local_player())));
 
 		if (g_interfaces.g_local_player && g_interfaces.p_engine->is_in_game() && g_interfaces.p_engine->is_connected())
+		{
 			g_esp.start();
+			g_dlight.start();
+		}
 	}
 
 	ohook(pPanels, vguiPanel, forceRepaint, allowForce);

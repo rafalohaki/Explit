@@ -5,7 +5,7 @@ class iv_model_render
 {
 public:
 	virtual int                     drawmodel(int flags, i_client_renderable *prenderable, model_instance_handle_t instance, int entity_index, const model_t *model, Vector const& origin, QAngle const& angles, int skin, int body, int hitboxset, const matrix3x4_t *modeltoworld = NULL, const matrix3x4_t *plightingoffset = NULL) = 0;
-	virtual void                    forcedmaterialoverride(imaterial *newmaterial, override_type_t noverridetype = 0, int noverrides = 0) = 0;
+	virtual void                    forcedmaterialoverride(i_material *newmaterial, override_type_t noverridetype = 0, int noverrides = 0) = 0;
 	virtual bool                    isforcedmaterialoverride(void) = 0;
 	virtual void                    setviewtarget(const c_studio_hdr *pstudiohdr, int nbodyindex, const Vector& target) = 0;
 	virtual model_instance_handle_t   createinstance(i_client_renderable *prenderable, light_cache_handle_t *pcache = NULL) = 0;

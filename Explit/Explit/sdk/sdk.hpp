@@ -68,10 +68,12 @@
 #include "interfaces/valve/iv_model_info_client.hpp"
 #include "interfaces/valve/iv_model_render.hpp"
 #include "interfaces/valve/i_render_view.hpp"
+#include "interfaces/valve/iv_engine_effects.hpp"
 #include "interfaces/interfaces.hpp"
 #include "utils/vmt/vmt.hpp"
 #include "../features/visuals/esp.hpp"
 #include "../features/visuals/glow.hpp"
+#include "../features/visuals/dlight.hpp"
 
 #include "hooks/hooks.hpp"
 

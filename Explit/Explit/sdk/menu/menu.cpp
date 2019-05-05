@@ -1,26 +1,6 @@
 #include "menu.hpp"
 c_menu g_menu;
-int imatype = 0;
-std::vector<std::string> st = { "Cype 1", "type 2" ,"type 3", "type 4"};
-std::vector<std::string> st2 = { "multi 1", "type 2" ,"type 3", "type 4" };
-bool local = false;
-bool enemy = false;
-bool team = false;
-bool weapons = false;
-bool chickens = false;
-bool grenades = false;
-std::vector< zgui::multi_select_item > combo_test{{ "Local", &local },{ "Enemy", &enemy},
-	{ "Team", &team},
-	{ "Weapons", &weapons },
-	{ "Chickens", &chickens},
-	{ "Grenades", &grenades},
-};
-int dsds = 1;
-bool dsa = false;
-int key = 2;
-float slid = 22;
-float nslid = -24;
-std::string dasd = "";
+
 void c_menu::draw()
 {
 	zgui::poll_input("Counter-Strike: Global Offensive");
@@ -55,7 +35,7 @@ void c_menu::draw()
 		zgui::end_window();
 	}
 
-	if(g_config.settings.misc.watermark) draw_watermark();
+	if(g_config.settings.visuals.others.watermark) draw_watermark();
 }
 
 void c_menu::draw_watermark()
@@ -83,27 +63,37 @@ void c_menu::draw_watermark()
 
 void c_menu::draw_misc()
 {
-	zgui::begin_groupbox("Misc", { 163,290 });
-	zgui::text_input("Config Name", g_config.settings.config_name);
-	if (zgui::button("Create Config"))
+	zgui::begin_groupbox("Misc");
 	{
-		if (!g_config.settings.config_name.empty())
-		{
-			g_config.save(g_utils.stringer(g_config.settings.config_name,".json"));
-			g_config.settings.config_name.clear();
-			g_config.refresh();
-		}
+		if (zgui::button("Unhook"))
+			g_sdk.unhook = true;
 	}
-	zgui::combobox("Config List", g_config.settings.config_list, g_config.settings.config_id);
-	if (zgui::button("Refresh"))
-		g_config.refresh();
-	if (zgui::button("Save"))
-		g_config.save(g_config.settings.config_list[g_config.settings.config_id]);
-	if (zgui::button("Load"))
-		g_config.load(g_config.settings.config_list[g_config.settings.config_id]);
-	if (zgui::button("Unhook"))
-		g_sdk.unhook = true;
 	zgui::end_groupbox();
+
+	zgui::next_column();
+
+	zgui::begin_groupbox("Configs");
+	{
+		zgui::text_input("Config Name", g_config.settings.config_name);
+		if (zgui::button("Create Config"))
+		{
+			if (!g_config.settings.config_name.empty())
+			{
+				g_config.save(g_utils.stringer(g_config.settings.config_name, ".json"));
+				g_config.settings.config_name.clear();
+				g_config.refresh();
+			}
+		}
+		zgui::combobox("Config List", g_config.settings.config_list, g_config.settings.config_id);
+		if (zgui::button("Refresh"))
+			g_config.refresh();
+		if (zgui::button("Save"))
+			g_config.save(g_config.settings.config_list[g_config.settings.config_id]);
+		if (zgui::button("Load"))
+			g_config.load(g_config.settings.config_list[g_config.settings.config_id]);
+	}
+	zgui::end_groupbox();
+
 }
 void c_menu::draw_visuals()
 {
@@ -125,28 +115,54 @@ void c_menu::draw_visuals()
 		zgui::checkbox("Skeleton", g_config.settings.visuals.esp.skeletons);
 		zgui::checkbox("Visible Only", g_config.settings.visuals.esp.visible);
 		zgui::checkbox("Vulnerability", g_config.settings.visuals.esp.vulnerability);
-		zgui::multi_combobox("Filter", std::vector< zgui::multi_select_item >{ { "Local", &g_config.settings.visuals.esp.local }, { "Enemy", &g_config.settings.visuals.esp.enemies }, { "Team", &g_config.settings.visuals.esp.team }, { "Weapons", &g_config.settings.visuals.esp.weapons }, { "Chickens", &g_config.settings.visuals.esp.chickens }});
+		zgui::multi_combobox("Filter##1", std::vector< zgui::multi_select_item >{ { "Local", &g_config.settings.visuals.esp.local }, { "Enemy", &g_config.settings.visuals.esp.enemies }, { "Team", &g_config.settings.visuals.esp.team }, { "Weapons", &g_config.settings.visuals.esp.weapons }, { "Chickens", &g_config.settings.visuals.esp.chickens }});
 
 	}
 	zgui::end_groupbox();
 
 	zgui::next_column();
 
-	zgui::begin_groupbox("Chams");
+	zgui::begin_groupbox("Chams", { 163, 150 });
 	{
 		zgui::checkbox("Enable#2", g_config.settings.visuals.chams.chams);
+		zgui::checkbox("Visible Only#3", g_config.settings.visuals.chams.visible);
+		zgui::multi_combobox("Filter#3", std::vector< zgui::multi_select_item >{ { "Local", &g_config.settings.visuals.chams.local }, { "Enemy", &g_config.settings.visuals.chams.enemy }, { "Team", &g_config.settings.visuals.chams.team }});
+		zgui::combobox("Material", std::vector<std::string>{"Flat", "Glass",}, g_config.settings.visuals.chams.material);
+		zgui::checkbox("Wireframe", g_config.settings.visuals.chams.wireframe);
+		zgui::checkbox("Arms", g_config.settings.visuals.chams.arms);
+		zgui::checkbox("Weapon#2", g_config.settings.visuals.chams.weapon);
 	}
 	zgui::end_groupbox();
 
-	zgui::next_column();
+	zgui::next_column( 0,168 );
 
-	zgui::begin_groupbox("Glow", { 164, 290});
+	zgui::begin_groupbox("Glow", { 163, 156});
 	{
 		zgui::checkbox("Enable#3", g_config.settings.visuals.glow.glow);
 		zgui::checkbox("Visible Only#2", g_config.settings.visuals.glow.visible);
 		zgui::checkbox("Vulnerability#2", g_config.settings.visuals.glow.vulnerability);
 		zgui::combobox("Glow Style", std::vector<std::string>{"0", "1", "2", "3"}, g_config.settings.visuals.glow.style);
 		zgui::multi_combobox("Filter#2", std::vector< zgui::multi_select_item >{ { "Local", &g_config.settings.visuals.glow.local }, { "Enemy", &g_config.settings.visuals.glow.enemy }, { "Team", &g_config.settings.visuals.glow.team }, { "Weapons", &g_config.settings.visuals.glow.weapons }, { "Chickens", &g_config.settings.visuals.glow.chickens }});
+	}
+	zgui::end_groupbox();
+
+	zgui::next_column();
+
+	zgui::begin_groupbox("DLights", { 164, 77 });
+	{
+		zgui::checkbox("Enable#4", g_config.settings.visuals.dlights.enable);
+		zgui::multi_combobox("Filter#4", std::vector< zgui::multi_select_item >{ { "Local", &g_config.settings.visuals.dlights.local }, { "Enemy", &g_config.settings.visuals.dlights.enemy }, { "Team", &g_config.settings.visuals.dlights.team }});
+		zgui::slider_float("Radius", 0, 500, g_config.settings.visuals.dlights.radius);
+
+	}
+	zgui::end_groupbox();
+
+	zgui::next_column(0, 112);
+
+	zgui::begin_groupbox("Others", { 164, 212 });
+	{
+		zgui::checkbox("Watermark", g_config.settings.visuals.others.watermark);
+
 	}
 	zgui::end_groupbox();
 }

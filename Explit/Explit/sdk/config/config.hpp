@@ -48,8 +48,23 @@ public:
 				}colors;
 			}esp;
 			struct {
-				bool chams = true;
-
+				bool chams = false;
+				bool local = false;
+				bool enemy = false;
+				bool team = false;
+				bool wireframe = false;
+				int material = 0;
+				bool visible = false;
+				bool arms = false;
+				bool weapon = false;
+				struct {
+					float team_invisible[3] = { 0,0,255 };
+					float team_visible[3] = { 0,255,0 };
+					float enemy_invisible[3] = { 255,255,0 };
+					float enemy_visible[3] = { 255,0,0 };
+					float arms[3] = { 255,0,0 };
+					float weapon[3] = { 255,0,0 };
+				}colors;
 			}chams;
 			struct {
 				bool glow = false;
@@ -71,9 +86,18 @@ public:
 					float vulnerability[3] = { 255,255,255 };
 				}colors;
 			}glow;
+			struct {
+				bool enable = false;
+				bool local = false;
+				bool enemy = false;
+				bool team = false;
+				float radius = 50.f;
+			}dlights;
+			struct {
+				bool watermark = true;
+			}others;
 		}visuals;
 		struct {
-			bool watermark = true;
 		}misc;
 	} settings;
 private:

@@ -829,7 +829,7 @@ void zgui::slider_float(const char* id, const float min, const float max, float&
 		context.window.blocking = 0;
 	}
 
-	context.window.render.emplace_back(zgui_control_render_t{ {draw_pos.x + 57 + control_width / 2 - text_wide / 2, draw_pos.y + 2 }, zgui_render_type::zgui_text, global_colors.color_text, value_str.c_str() });
+	context.window.render.emplace_back(zgui_control_render_t{ {draw_pos.x + 57 - control_width / 2 + text_wide / 2, draw_pos.y + 2 }, zgui_render_type::zgui_text, global_colors.color_text, value_str.c_str() });
 
 	context.window.render.emplace_back(zgui_control_render_t{ { draw_pos.x - 5, draw_pos.y + 1 }, zgui_render_type::zgui_filled_rect, global_colors.main_red, "", {dynamic_width, control_height - 2} });
 	context.window.render.emplace_back(zgui_control_render_t{ { draw_pos.x - 5, draw_pos.y + 1 }, zgui_render_type::zgui_filled_rect, global_colors.control_idle, "", {control_width - 2, control_height - 2} });

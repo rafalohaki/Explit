@@ -33,7 +33,7 @@ void c_esp::start()
 
 }
 
-void c_esp::draw_players(c_base_entity* pplayer, RECT box)
+void c_esp::draw_players(c_base_entity* pplayer, const RECT box)
 {
 	int text_position = box.top - 1;
 	int bar_position = box.left - 4;
@@ -50,7 +50,7 @@ void c_esp::draw_players(c_base_entity* pplayer, RECT box)
 				g_draw.rect(box.left - 1, box.top - 1, box.right - box.left + 2, box.bottom - box.top + 2, color(1, 1, 1));
 				g_draw.rect(box.left + 1, box.top + 1, box.right - box.left - 2, box.bottom - box.top - 2, color(1, 1, 1));
 			}
-			g_draw.rect(box.left, box.top, box.right - box.left, box.bottom - box.top, color(255, 0, 0));
+			g_draw.rect(box.left, box.top, box.right - box.left, box.bottom - box.top, pplayer->m_iteamnum() == g_interfaces.g_local_player->m_iteamnum() ? color(g_config.settings.visuals.esp.colors.team_visible[0], g_config.settings.visuals.esp.colors.team_visible[1], g_config.settings.visuals.esp.colors.team_visible[2]) : color(g_config.settings.visuals.esp.colors.enemy_visible[0], g_config.settings.visuals.esp.colors.enemy_visible[1], g_config.settings.visuals.esp.colors.enemy_visible[2]));
 			break;
 		}
 		case 1:
@@ -69,17 +69,17 @@ void c_esp::draw_players(c_base_entity* pplayer, RECT box)
 				g_draw.fill_rect(box.left - 1, box.bottom - (box.bottom - box.top) / 3 - 1 , 3, (box.bottom - box.top) / 3 + 2, color(1, 1, 1));
 				g_draw.fill_rect(box.right - 2, box.bottom -  (box.bottom - box.top) / 3 - 1, 3, (box.bottom - box.top) / 3 + 2, color(1, 1, 1));
 			}
-			g_draw.line(box.left, box.top, box.left + (box.right - box.left) / 3, box.top, color(255, 0, 0));
-			g_draw.line(box.right - (box.right - box.left) / 3 - 1, box.top, box.right - 1, box.top, color(255, 0, 0));
+			g_draw.line(box.left, box.top, box.left + (box.right - box.left) / 3, box.top, pplayer->m_iteamnum() == g_interfaces.g_local_player->m_iteamnum() ? color(g_config.settings.visuals.esp.colors.team_visible[0], g_config.settings.visuals.esp.colors.team_visible[1], g_config.settings.visuals.esp.colors.team_visible[2]) : color(g_config.settings.visuals.esp.colors.enemy_visible[0], g_config.settings.visuals.esp.colors.enemy_visible[1], g_config.settings.visuals.esp.colors.enemy_visible[2]));
+			g_draw.line(box.right - (box.right - box.left) / 3 - 1, box.top, box.right - 1, box.top, pplayer->m_iteamnum() == g_interfaces.g_local_player->m_iteamnum() ? color(g_config.settings.visuals.esp.colors.team_visible[0], g_config.settings.visuals.esp.colors.team_visible[1], g_config.settings.visuals.esp.colors.team_visible[2]) : color(g_config.settings.visuals.esp.colors.enemy_visible[0], g_config.settings.visuals.esp.colors.enemy_visible[1], g_config.settings.visuals.esp.colors.enemy_visible[2]));
 
-			g_draw.line(box.left, box.top, box.left, box.top + (box.bottom - box.top) / 3, color(255, 0, 0));
-			g_draw.line(box.right - 1, box.top, box.right - 1	, box.top + (box.bottom - box.top) / 3, color(255, 0, 0));
+			g_draw.line(box.left, box.top, box.left, box.top + (box.bottom - box.top) / 3, pplayer->m_iteamnum() == g_interfaces.g_local_player->m_iteamnum() ? color(g_config.settings.visuals.esp.colors.team_visible[0], g_config.settings.visuals.esp.colors.team_visible[1], g_config.settings.visuals.esp.colors.team_visible[2]) : color(g_config.settings.visuals.esp.colors.enemy_visible[0], g_config.settings.visuals.esp.colors.enemy_visible[1], g_config.settings.visuals.esp.colors.enemy_visible[2]));
+			g_draw.line(box.right - 1, box.top, box.right - 1	, box.top + (box.bottom - box.top) / 3, pplayer->m_iteamnum() == g_interfaces.g_local_player->m_iteamnum() ? color(g_config.settings.visuals.esp.colors.team_visible[0], g_config.settings.visuals.esp.colors.team_visible[1], g_config.settings.visuals.esp.colors.team_visible[2]) : color(g_config.settings.visuals.esp.colors.enemy_visible[0], g_config.settings.visuals.esp.colors.enemy_visible[1], g_config.settings.visuals.esp.colors.enemy_visible[2]));
 				
-			g_draw.line(box.left, box.bottom - 1, box.left + (box.right - box.left) / 3, box.bottom - 1, color(255, 0, 0));
-			g_draw.line(box.right - (box.right - box.left) / 3 - 1, box.bottom - 1, box.right - 1, box.bottom - 1, color(255, 0, 0));
+			g_draw.line(box.left, box.bottom - 1, box.left + (box.right - box.left) / 3, box.bottom - 1, pplayer->m_iteamnum() == g_interfaces.g_local_player->m_iteamnum() ? color(g_config.settings.visuals.esp.colors.team_visible[0], g_config.settings.visuals.esp.colors.team_visible[1], g_config.settings.visuals.esp.colors.team_visible[2]) : color(g_config.settings.visuals.esp.colors.enemy_visible[0], g_config.settings.visuals.esp.colors.enemy_visible[1], g_config.settings.visuals.esp.colors.enemy_visible[2]));
+			g_draw.line(box.right - (box.right - box.left) / 3 - 1, box.bottom - 1, box.right - 1, box.bottom - 1, pplayer->m_iteamnum() == g_interfaces.g_local_player->m_iteamnum() ? color(g_config.settings.visuals.esp.colors.team_visible[0], g_config.settings.visuals.esp.colors.team_visible[1], g_config.settings.visuals.esp.colors.team_visible[2]) : color(g_config.settings.visuals.esp.colors.enemy_visible[0], g_config.settings.visuals.esp.colors.enemy_visible[1], g_config.settings.visuals.esp.colors.enemy_visible[2]));
 
-			g_draw.line(box.left, box.bottom - (box.bottom - box.top) / 3, box.left, box.bottom, color(255, 0, 0));
-			g_draw.line(box.right - 1, box.bottom - (box.bottom - box.top) / 3, box.right - 1, box.bottom, color(255, 0, 0));
+			g_draw.line(box.left, box.bottom - (box.bottom - box.top) / 3, box.left, box.bottom, pplayer->m_iteamnum() == g_interfaces.g_local_player->m_iteamnum() ? color(g_config.settings.visuals.esp.colors.team_visible[0], g_config.settings.visuals.esp.colors.team_visible[1], g_config.settings.visuals.esp.colors.team_visible[2]) : color(g_config.settings.visuals.esp.colors.enemy_visible[0], g_config.settings.visuals.esp.colors.enemy_visible[1], g_config.settings.visuals.esp.colors.enemy_visible[2]));
+			g_draw.line(box.right - 1, box.bottom - (box.bottom - box.top) / 3, box.right - 1, box.bottom, pplayer->m_iteamnum() == g_interfaces.g_local_player->m_iteamnum() ? color(g_config.settings.visuals.esp.colors.team_visible[0], g_config.settings.visuals.esp.colors.team_visible[1], g_config.settings.visuals.esp.colors.team_visible[2]) : color(g_config.settings.visuals.esp.colors.enemy_visible[0], g_config.settings.visuals.esp.colors.enemy_visible[1], g_config.settings.visuals.esp.colors.enemy_visible[2]));
 			break;
 		}
 		default:
@@ -226,15 +226,14 @@ void c_esp::draw_players(c_base_entity* pplayer, RECT box)
 	if (g_config.settings.visuals.esp.ammo)
 	{
 		const auto weapon = pplayer->get_weapon();
-		const auto max_clip = weapon->get_weapon_info()->m_maxclip;
-		if (max_clip != -1)
+		if (const auto max_clip = weapon->get_weapon_info()->m_maxclip; max_clip != -1)
 		{
 			g_draw.string(box.left + (box.right - box.left) / 2, weapon_position, color(255, 255, 255), g_draw.esp, true, g_utils.stringer("[", weapon->m_iclip1(), "/", max_clip, "]"));
 			weapon_position += 12;
 		}
 	}
 }
-void c_esp::draw_chickens(c_base_entity* pplayer, RECT box)
+void c_esp::draw_chickens(c_base_entity* pplayer, const RECT box)
 {
 	if (g_config.settings.visuals.esp.box)
 	{
@@ -302,7 +301,7 @@ void c_esp::draw_chickens(c_base_entity* pplayer, RECT box)
 		g_draw.string(box.left + (box.right - box.left) / 2, box.top - 13, color(255, 255, 255), g_draw.esp, true, "chicken");
 	}
 }
-void c_esp::draw_weapons(c_base_entity* pentity, RECT box)
+void c_esp::draw_weapons(c_base_entity* pentity, const RECT box)
 {
 	int text_position = box.top - 1;
 	int weapon_position = box.bottom + 2;
@@ -377,10 +376,9 @@ void c_esp::draw_weapons(c_base_entity* pentity, RECT box)
 	}
 	if (g_config.settings.visuals.esp.ammo)
 	{
-		const auto iclip = reinterpret_cast<c_base_weapon*>(pentity)->m_iclip1();
-		const auto max_clip = reinterpret_cast<c_base_weapon*>(pentity)->get_weapon_info()->m_maxclip;
-		if (max_clip != -1)
+		if (const auto max_clip = reinterpret_cast<c_base_weapon*>(pentity)->get_weapon_info()->m_maxclip; max_clip != -1)
 		{
+			const auto iclip = reinterpret_cast<c_base_weapon*>(pentity)->m_iclip1();
 			g_draw.string(box.left + (box.right - box.left) / 2, weapon_position, color(255, 255, 255), g_draw.esp, true, g_utils.stringer("[", iclip, "/", max_clip, "]"));
 			weapon_position += 12;
 		}
@@ -393,8 +391,8 @@ RECT c_esp::get_boundbox(c_base_entity* pent)
 		return box;
 
 	const matrix3x4_t& trans = pent->m_rgflcoordinateframe();
-
 	const auto collision = pent->get_collideable();
+
 	if (!collision)
 		return box;
 

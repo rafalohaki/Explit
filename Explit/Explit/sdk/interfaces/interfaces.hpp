@@ -15,6 +15,7 @@ public:
 	iv_model_info_client* p_model_info_client;
 	i_engine_trace* p_engine_trace;
 	iv_render_view* p_render_view;
+	iv_engine_effects* p_engine_effects;
 	c_base_entity* g_local_player;
 	void get_interfaces();
 private:

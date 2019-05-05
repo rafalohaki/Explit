@@ -3,9 +3,7 @@
 
 class c_glow {
 private:
-	void draw_players(c_glow_manager::glow_object_definition_t* glow_entity);
-	void draw_weapons(c_glow_manager::glow_object_definition_t* glow_entity);
-	void draw_chickens(c_glow_manager::glow_object_definition_t* glow_entity);
+	void glow(c_glow_manager::glow_object_definition_t* glow_entity, const color c);
 public:
 	void start();
 };

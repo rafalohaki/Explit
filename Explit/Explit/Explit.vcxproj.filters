@@ -115,6 +115,9 @@
     <ClCompile Include="sdk\math\vector4d.cpp">
       <Filter>sdk\math</Filter>
     </ClCompile>
+    <ClCompile Include="features\visuals\dlight.cpp">
+      <Filter>features\visuals</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="zgui\zgui.hpp">
@@ -284,6 +287,12 @@
     </ClInclude>
     <ClInclude Include="sdk\interfaces\valve\i_render_view.hpp">
       <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\iv_engine_effects.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="features\visuals\dlight.hpp">
+      <Filter>features\visuals</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

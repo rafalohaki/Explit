@@ -19,44 +19,20 @@ void c_glow::start()
 			continue;
 
 		if (g_config.settings.visuals.glow.weapons && pentity->is_weapon())
-			draw_weapons(glow_entity);
+			glow(glow_entity,color(g_config.settings.visuals.glow.colors.weapons[0], g_config.settings.visuals.glow.colors.weapons[1], g_config.settings.visuals.glow.colors.weapons[2]));
 		if (g_config.settings.visuals.glow.chickens && pentity->is_chicken())
-			draw_chickens(glow_entity);
+			glow(glow_entity, color(g_config.settings.visuals.glow.colors.chickens[0], g_config.settings.visuals.glow.colors.chickens[1], g_config.settings.visuals.glow.colors.chickens[2]));
 		if (g_config.settings.visuals.glow.enemy && pentity->m_iteamnum() != g_interfaces.g_local_player->m_iteamnum() && pentity->is_valid())
-			draw_players(glow_entity);
+			glow(glow_entity, color(g_config.settings.visuals.glow.colors.enemy_visible[0], g_config.settings.visuals.glow.colors.enemy_visible[1], g_config.settings.visuals.glow.colors.enemy_visible[2]));
 		if (g_config.settings.visuals.glow.team && pentity->m_iteamnum() == g_interfaces.g_local_player->m_iteamnum() && pentity->is_valid())
-			draw_players(glow_entity);
+			glow(glow_entity, color(g_config.settings.visuals.glow.colors.team_visible[0], g_config.settings.visuals.glow.colors.team_visible[1], g_config.settings.visuals.glow.colors.team_visible[2]));
 	}
 }
-void c_glow::draw_chickens(c_glow_manager::glow_object_definition_t* glow_entity)
+void c_glow::glow(c_glow_manager::glow_object_definition_t* glow_entity, const color c)
 {
-	glow_entity->red = 0;
-	glow_entity->green = 0;
-	glow_entity->blue = 255;
-	glow_entity->alpha = 255;
-
-	glow_entity->glow_style = g_config.settings.visuals.glow.style;
-
-	glow_entity->render_when_occluded = true;
-	glow_entity->render_when_unoccluded = false;
-}
-void c_glow::draw_weapons(c_glow_manager::glow_object_definition_t* glow_entity)
-{
-	glow_entity->red = 0;
-	glow_entity->green = 255;
-	glow_entity->blue = 0;
-	glow_entity->alpha = 255;
-
-	glow_entity->glow_style = g_config.settings.visuals.glow.style;
-
-	glow_entity->render_when_occluded = true;
-	glow_entity->render_when_unoccluded = false;
-}
-void c_glow::draw_players(c_glow_manager::glow_object_definition_t* glow_entity)
-{
-	glow_entity->red = 0;
-	glow_entity->green = 255;
-	glow_entity->blue = 255;
+	glow_entity->red = c.r();
+	glow_entity->green = c.g();
+	glow_entity->blue = c.b();
 	glow_entity->alpha = 255;
 
 	glow_entity->glow_style = g_config.settings.visuals.glow.style;

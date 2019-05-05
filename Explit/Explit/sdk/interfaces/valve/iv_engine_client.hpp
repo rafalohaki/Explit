@@ -16,23 +16,23 @@
 #define flow_incoming 1
 #define max_flows 2	// in & out
 
-typedef struct inputcontexthandle_t__ *inputcontexthandle_t;
-struct client_textmessage_t;
+typedef struct input_context_handle_t__ *input_context_handle_t;
+struct client_text_message_t;
 struct model_t;
-class surfinfo;
-class imaterial;
-class csentence;
-class caudiosource;
-class audiostate_t;
-class ispatialquery;
-class imaterialsystem;
-class cphyscollide;
-class iachievementmgr;
-class inetchannelinfo;
-class ispsharedmemory;
-class cgamestatsdata;
-class keyvalues;
-class csteamapicontext;
+class surf_info;
+class i_material;
+class c_sentence;
+class c_audio_source;
+class audio_state_t;
+class is_patial_query;
+class i_material_system;
+class c_phys_collide;
+class i_achievement_mgr;
+class i_net_channel_info;
+class is_pshared_memory;
+class c_game_stats_data;
+class key_values;
+class c_steam_api_context;
 struct frustum_t;
 
 typedef void(*pfndemocustomdatacallback)(uint8_t *pdata, size_t isize);
@@ -65,9 +65,9 @@ typedef struct player_info_s
 class iv_engine_client
 {
 public:
-	virtual int                   getintersectingsurfaces(const model_t *model, const Vector &vcenter, const float radius, const bool bonlyvisiblesurfaces, surfinfo *pinfos, const int nmaxinfos) = 0;
+	virtual int                   getintersectingsurfaces(const model_t *model, const Vector &vcenter, const float radius, const bool bonlyvisiblesurfaces, surf_info *pinfos, const int nmaxinfos) = 0;
 	virtual Vector                getlightforpoint(const Vector &pos, bool bclamp) = 0;
-	virtual imaterial*            tracelinematerialandlighting(const Vector &start, const Vector &end, Vector &diffuselightcolor, Vector& basecolor) = 0;
+	virtual i_material*            tracelinematerialandlighting(const Vector &start, const Vector &end, Vector &diffuselightcolor, Vector& basecolor) = 0;
 	virtual const char*           parsefile(const char *data, char *token, int maxlen) = 0;
 	virtual bool                  copyfile(const char *source, const char *destination) = 0;
 	virtual void                  get_screen_size(int& width, int& height) = 0;
@@ -75,17 +75,17 @@ public:
 	virtual void                  clientcmd(const char *szcmdstring) = 0;
 	virtual bool                  getplayerinfo(int ent_num, player_info_t *pinfo) = 0;
 	virtual int                   getplayerforuserid(int userid) = 0;
-	virtual client_textmessage_t* textmessageget(const char *pname) = 0; // 10
+	virtual client_text_message_t* textmessageget(const char *pname) = 0; // 10
 	virtual bool                  con_isvisible(void) = 0;
 	virtual int                   get_local_player(void) = 0;
 	virtual const model_t*        loadmodel(const char *pname, bool bprop = false) = 0;
 	virtual float                 getlasttimestamp(void) = 0;
-	virtual csentence*            getsentence(caudiosource *paudiosource) = 0; // 15
-	virtual float                 getsentencelength(caudiosource *paudiosource) = 0;
-	virtual bool                  isstreaming(caudiosource *paudiosource) const = 0;
+	virtual c_sentence*            getsentence(c_audio_source *paudiosource) = 0; // 15
+	virtual float                 getsentencelength(c_audio_source *paudiosource) = 0;
+	virtual bool                  isstreaming(c_audio_source *paudiosource) const = 0;
 	virtual void                  get_view_angles(QAngle& va) = 0;
 	virtual void                  set_view_angles(QAngle& va) = 0;
-	virtual int                   getmaxclients(void) = 0; // 20
+	virtual int                   get_max_clients(void) = 0; // 20
 	virtual const char*           key_lookupbinding(const char *pbinding) = 0;
 	virtual const char*           key_bindingforkey(int &code) = 0;
 	virtual void                  key_setbinding(int, char const*) = 0;
@@ -108,14 +108,14 @@ public:
 	virtual int                   gamelumpsize(int lumpid) const = 0; // 40
 	virtual bool                  loadgamelump(int lumpid, void* pbuffer, int size) = 0;
 	virtual int                   levelleafcount() const = 0;
-	virtual ispatialquery*        getbsptreequery() = 0;
+	virtual is_patial_query*        getbsptreequery() = 0;
 	virtual void                  lineartogamma(float* linear, float* gamma) = 0;
 	virtual float                 lightstylevalue(int style) = 0; // 45
 	virtual void                  computedynamiclighting(const Vector& pt, const Vector* pnormal, Vector& color) = 0;
 	virtual void                  getambientlightcolor(Vector& color) = 0;
 	virtual int                   getdxsupportlevel() = 0;
 	virtual bool                  supportshdr() = 0;
-	virtual void                  mat_stub(imaterialsystem *pmatsys) = 0; // 50
+	virtual void                  mat_stub(i_material_system *pmatsys) = 0; // 50
 	virtual void                  getchaptername(char *pchbuff, int imaxlength) = 0;
 	virtual char const*           getlevelname(void) = 0;
 	virtual char const*           getlevelnameshort(void) = 0;
@@ -129,7 +129,7 @@ public:
 	virtual bool                  doesboxtouchareafrustum(const Vector &mins, const Vector &maxs, int iarea) = 0; // 60
 	virtual int                   getfrustumlist(frustum_t **plist, int listmax) = 0;
 	virtual bool                  shoulduseareafrustum(int i) = 0;
-	virtual void                  setaudiostate(const audiostate_t& state) = 0;
+	virtual void                  setaudiostate(const audio_state_t& state) = 0;
 	virtual int                   sentencegrouppick(int groupindex, char *name, int namebuflen) = 0;
 	virtual int                   sentencegrouppicksequential(int groupindex, char *name, int namebuflen, int sentenceindex, int reset) = 0;
 	virtual int                   sentenceindexfromname(const char *psentencename) = 0;
@@ -143,8 +143,8 @@ public:
 	virtual int                   getocclusionviewid(void) = 0;
 	virtual void*                 saveallocmemory(size_t num, size_t size) = 0;
 	virtual void                  savefreememory(void *psavemem) = 0;
-	virtual inetchannelinfo*      get_net_channel_info(void) = 0;
-	virtual void                  debugdrawphyscollide(const cphyscollide *pcollide, imaterial *pmaterial, const matrix3x4_t& transform, const uint8_t* color) = 0; //79
+	virtual i_net_channel_info*      get_net_channel_info(void) = 0;
+	virtual void                  debugdrawphyscollide(const c_phys_collide *pcollide, i_material *pmaterial, const matrix3x4_t& transform, const uint8_t* color) = 0; //79
 	virtual void                  checkpoint(const char *pname) = 0; // 80
 	virtual void                  drawportals() = 0;
 	virtual bool                  isplayingdemo(void) = 0;
@@ -186,8 +186,8 @@ public:
 	virtual void                  setoverlaybindproxy(int ioverlayid, void *pbindproxy) = 0;
 	virtual bool                  copyframebuffertomaterial(const char *pmaterialname) = 0;
 	virtual void                  readconfiguration(const int icontroller, const bool readdefault) = 0;
-	virtual void                  setachievementmgr(iachievementmgr *pachievementmgr) = 0;
-	virtual iachievementmgr*      getachievementmgr() = 0;
+	virtual void                  setachievementmgr(i_achievement_mgr *pachievementmgr) = 0;
+	virtual i_achievement_mgr*      getachievementmgr() = 0;
 	virtual bool                  maploadfailed(void) = 0;
 	virtual void                  setmaploadfailed(bool bstate) = 0;
 	virtual bool                  islowviolence() = 0;
@@ -210,7 +210,7 @@ public:
 	virtual bool                  isvalidsplitscreenslot(int nslot) = 0;
 	virtual int                   firstvalidsplitscreenslot() = 0; // -1 == invalid
 	virtual int                   nextvalidsplitscreenslot(int npreviousslot) = 0; // -1 == invalid
-	virtual ispsharedmemory*      getsingleplayersharedmemoryspace(const char *szname, int ent_num = (1 << 11)) = 0;
+	virtual is_pshared_memory*      getsingleplayersharedmemoryspace(const char *szname, int ent_num = (1 << 11)) = 0;
 	virtual void                  computelightingcube(const Vector& pt, bool bclamp, Vector *pboxcolors) = 0;
 	virtual void                  registerdemocustomdatacallback(const char* szcallbacksaveid, pfndemocustomdatacallback pcallback) = 0;
 	virtual void                  recorddemocustomdata(pfndemocustomdatacallback pcallback, const void *pdata, size_t idatalength) = 0;
@@ -233,8 +233,8 @@ public:
 	virtual bool                  iscreatingreslist() = 0;
 	virtual bool                  iscreatingxboxreslist() = 0;
 	virtual void                  settimescale(float fltimescale) = 0;
-	virtual void                  setgamestatsdata(cgamestatsdata *pgamestatsdata) = 0;
-	virtual cgamestatsdata*       getgamestatsdata() = 0;
+	virtual void                  setgamestatsdata(c_game_stats_data *pgamestatsdata) = 0;
+	virtual c_game_stats_data*       getgamestatsdata() = 0;
 	virtual void                  getmousedelta(int &dx, int &dy, bool b) = 0; // unknown
 	virtual   const char*         key_lookupbindingex(const char *pbinding, int iuserid = -1, int istartcount = 0, int iallowjoystick = -1) = 0;
 	virtual int                   key_codeforbinding(char  const*, int, int, int) = 0; // 186
@@ -252,9 +252,9 @@ public:
 	virtual void                  searchpathschangedafterinstall() = 0;
 	virtual void                  configuresystemlevel(int ncpulevel, int ngpulevel) = 0;
 	virtual void                  setconnectionpassword(char const *pchcurrentpw) = 0;
-	virtual csteamapicontext*     getsteamapicontext() = 0;
+	virtual c_steam_api_context*     getsteamapicontext() = 0;
 	virtual void                  submitstatrecord(char const *szmapname, unsigned int uiblobversion, unsigned int uiblobsize, const void *pvblob) = 0;
-	virtual void                  servercmdkeyvalues(keyvalues *pkeyvalues) = 0; // 203
+	virtual void                  servercmdkeyvalues(key_values *pkeyvalues) = 0; // 203
 	virtual void                  spherepaintsurface(const model_t* model, const Vector& location, unsigned char chr, float fl1, float fl2) = 0;
 	virtual bool                  haspaintmap(void) = 0;
 	virtual void                  enablepaintmaprender() = 0;
@@ -266,7 +266,7 @@ public:
 	virtual bool                  isactiveapp() = 0;
 	virtual bool                  isclientlocaltoactiveserver() = 0;
 	virtual void                  tickprogressbar() = 0;
-	virtual inputcontexthandle_t  getinputcontext(int /*engineinputcontextid_t*/ id) = 0;
+	virtual input_context_handle_t  getinputcontext(int /*engineinputcontextid_t*/ id) = 0;
 	virtual void                  getstartupimage(char* filename, int size) = 0;
 	virtual bool                  isusinglocalnetworkbackdoor(void) = 0;
 	virtual void                  savegame(const char*, bool, char*, int, char*, int) = 0;
@@ -280,7 +280,7 @@ public:
 	virtual bool                  audiolanguagechanged(void) = 0;
 	virtual bool                  isautosaveinprogress(void) = 0;
 	virtual void                  startloadingscreenforcommand(const char* command) = 0;
-	virtual void                  startloadingscreenforkeyvalues(keyvalues* values) = 0;
+	virtual void                  startloadingscreenforkeyvalues(key_values* values) = 0;
 	virtual void                  sossetopvarfloat(const char*, float) = 0;
 	virtual void                  sosgetopvarfloat(const char*, float &) = 0;
 	virtual bool                  issubscribedmap(const char*, bool) = 0;
@@ -288,7 +288,7 @@ public:
 	virtual void                  getdemoplaybackparameters(void) = 0;
 	virtual int                   getclientversion(void) = 0;
 	virtual bool                  isdemoskipping(void) = 0;
-	virtual void                  setdemoimportanteventdata(const keyvalues* values) = 0;
+	virtual void                  setdemoimportanteventdata(const key_values* values) = 0;
 	virtual void                  clearevents(void) = 0;
 	virtual int                   getsafezonexmin(void) = 0;
 	virtual bool                  isvoicerecording(void) = 0;
@@ -296,7 +296,7 @@ public:
 	virtual bool                  isreplay(void) = 0;
 };
 
-class inetchannelinfo
+class i_net_channel_info
 {
 public:
 
