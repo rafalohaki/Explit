@@ -141,6 +141,7 @@
     <ClCompile Include="sdk\interfaces\interfaces.cpp" />
     <ClCompile Include="sdk\math\math.cpp" />
     <ClCompile Include="sdk\math\vector2d.cpp" />
+    <ClCompile Include="sdk\math\vector4d.cpp" />
     <ClCompile Include="sdk\math\vmatrix.cpp" />
     <ClCompile Include="sdk\menu\menu.cpp" />
     <ClCompile Include="sdk\misc\c_base_entity.cpp" />
@@ -160,10 +161,14 @@
     <ClInclude Include="sdk\config\config.hpp" />
     <ClInclude Include="sdk\hooks\hooks.hpp" />
     <ClInclude Include="sdk\interfaces\interfaces.hpp" />
+    <ClInclude Include="sdk\interfaces\valve\iv_model_info_client.hpp" />
+    <ClInclude Include="sdk\interfaces\valve\iv_model_render.hpp" />
+    <ClInclude Include="sdk\interfaces\valve\i_engine_trace.hpp" />
     <ClInclude Include="sdk\interfaces\valve\i_global_vars.hpp" />
     <ClInclude Include="sdk\interfaces\valve\i_base_client_dll.hpp" />
     <ClInclude Include="sdk\interfaces\valve\i_client_entity_list.hpp" />
     <ClInclude Include="sdk\interfaces\valve\i_panel.hpp" />
+    <ClInclude Include="sdk\interfaces\valve\i_render_view.hpp" />
     <ClInclude Include="sdk\interfaces\valve\i_surface.hpp" />
     <ClInclude Include="sdk\interfaces\valve\iv_engine_client.hpp" />
     <ClInclude Include="sdk\math\math.hpp" />
@@ -172,6 +177,7 @@
     <ClInclude Include="sdk\math\srect.hpp" />
     <ClInclude Include="sdk\math\vector.hpp" />
     <ClInclude Include="sdk\math\vector2d.hpp" />
+    <ClInclude Include="sdk\math\vector4d.hpp" />
     <ClInclude Include="sdk\math\vmatrix.hpp" />
     <ClInclude Include="sdk\menu\menu.hpp" />
     <ClInclude Include="sdk\misc\c_base_entity.hpp" />
@@ -192,8 +198,10 @@
     <ClInclude Include="sdk\misc\valve\i_client_unknown.hpp" />
     <ClInclude Include="sdk\misc\valve\i_collideable.hpp" />
     <ClInclude Include="sdk\misc\valve\i_handle_entity.hpp" />
+    <ClInclude Include="sdk\misc\valve\i_material.hpp" />
     <ClInclude Include="sdk\misc\valve\life_state.hpp" />
     <ClInclude Include="sdk\misc\valve\recv.hpp" />
+    <ClInclude Include="sdk\misc\valve\studio.hpp" />
     <ClInclude Include="sdk\netvarmanager\fnv.hpp" />
     <ClInclude Include="sdk\netvarmanager\netvar_manager.hpp" />
     <ClInclude Include="sdk\sdk.hpp" />

@@ -9,7 +9,7 @@
 #define DEG2RAD( x ) ( ( float )( x ) * ( float )( ( float )( PI ) / 180.0f ) )
 #define RAD2DEG( x ) ( ( float )( x ) * ( float )( 180.0f / ( float )( PI ) ) )
 
-struct cplane_t
+struct c_plane_t
 {
 	Vector normal;
 	float dist;

@@ -112,6 +112,9 @@
     <ClCompile Include="features\visuals\glow.cpp">
       <Filter>features\visuals</Filter>
     </ClCompile>
+    <ClCompile Include="sdk\math\vector4d.cpp">
+      <Filter>sdk\math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="zgui\zgui.hpp">
@@ -260,6 +263,27 @@
     </ClInclude>
     <ClInclude Include="sdk\misc\valve\c_glow_manager.hpp">
       <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\studio.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\i_engine_trace.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\math\vector4d.hpp">
+      <Filter>sdk\math</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\iv_model_info_client.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\misc\valve\i_material.hpp">
+      <Filter>sdk\misc\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\iv_model_render.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\i_render_view.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

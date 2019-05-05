@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <windows.h>
 #include <stdio.h>
+#include <filesystem>
 #include <Psapi.h>
 #include <fstream> 
 #include <thread>
@@ -33,6 +34,7 @@
 #include "math/vector.hpp"
 #include "math/vector2d.hpp"
 #include "math/VMatrix.hpp"
+#include "math/vector4d.hpp"
 #include "math/math.hpp"
 #include "misc/valve/class_id.hpp"
 #include "misc/valve/client_class.hpp"
@@ -47,6 +49,8 @@
 #include "misc/valve/i_client_unknown.hpp"
 #include "misc/valve/i_collideable.hpp"
 #include "misc/valve/i_handle_entity.hpp"
+#include "misc/valve/studio.hpp"
+#include "misc/valve/i_material.hpp"
 #include "netvarmanager/netvar_manager.hpp"
 #include "misc/c_base_entity.hpp"
 #include "misc/c_base_weapon.hpp"
@@ -60,6 +64,10 @@
 #include "interfaces/valve/i_base_client_dll.hpp"
 #include "interfaces/valve/iv_engine_client.hpp"
 #include "interfaces/valve/i_client_entity_list.hpp"
+#include "interfaces/valve/i_engine_trace.hpp"
+#include "interfaces/valve/iv_model_info_client.hpp"
+#include "interfaces/valve/iv_model_render.hpp"
+#include "interfaces/valve/i_render_view.hpp"
 #include "interfaces/interfaces.hpp"
 #include "utils/vmt/vmt.hpp"
 #include "../features/visuals/esp.hpp"

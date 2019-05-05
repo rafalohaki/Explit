@@ -1,5 +1,26 @@
 #include "menu.hpp"
 c_menu g_menu;
+int imatype = 0;
+std::vector<std::string> st = { "Cype 1", "type 2" ,"type 3", "type 4"};
+std::vector<std::string> st2 = { "multi 1", "type 2" ,"type 3", "type 4" };
+bool local = false;
+bool enemy = false;
+bool team = false;
+bool weapons = false;
+bool chickens = false;
+bool grenades = false;
+std::vector< zgui::multi_select_item > combo_test{{ "Local", &local },{ "Enemy", &enemy},
+	{ "Team", &team},
+	{ "Weapons", &weapons },
+	{ "Chickens", &chickens},
+	{ "Grenades", &grenades},
+};
+int dsds = 1;
+bool dsa = false;
+int key = 2;
+float slid = 22;
+float nslid = -24;
+std::string dasd = "";
 void c_menu::draw()
 {
 	zgui::poll_input("Counter-Strike: Global Offensive");
@@ -63,10 +84,23 @@ void c_menu::draw_watermark()
 void c_menu::draw_misc()
 {
 	zgui::begin_groupbox("Misc", { 163,290 });
-	if (zgui::button("Save Config"))
-		g_config.save("Default.json");
-	if (zgui::button("Load Config"))
-		g_config.load("Default.json");
+	zgui::text_input("Config Name", g_config.settings.config_name);
+	if (zgui::button("Create Config"))
+	{
+		if (!g_config.settings.config_name.empty())
+		{
+			g_config.save(g_utils.stringer(g_config.settings.config_name,".json"));
+			g_config.settings.config_name.clear();
+			g_config.refresh();
+		}
+	}
+	zgui::combobox("Config List", g_config.settings.config_list, g_config.settings.config_id);
+	if (zgui::button("Refresh"))
+		g_config.refresh();
+	if (zgui::button("Save"))
+		g_config.save(g_config.settings.config_list[g_config.settings.config_id]);
+	if (zgui::button("Load"))
+		g_config.load(g_config.settings.config_list[g_config.settings.config_id]);
 	if (zgui::button("Unhook"))
 		g_sdk.unhook = true;
 	zgui::end_groupbox();
@@ -110,6 +144,7 @@ void c_menu::draw_visuals()
 	{
 		zgui::checkbox("Enable#3", g_config.settings.visuals.glow.glow);
 		zgui::checkbox("Visible Only#2", g_config.settings.visuals.glow.visible);
+		zgui::checkbox("Vulnerability#2", g_config.settings.visuals.glow.vulnerability);
 		zgui::combobox("Glow Style", std::vector<std::string>{"0", "1", "2", "3"}, g_config.settings.visuals.glow.style);
 		zgui::multi_combobox("Filter#2", std::vector< zgui::multi_select_item >{ { "Local", &g_config.settings.visuals.glow.local }, { "Enemy", &g_config.settings.visuals.glow.enemy }, { "Team", &g_config.settings.visuals.glow.team }, { "Weapons", &g_config.settings.visuals.glow.weapons }, { "Chickens", &g_config.settings.visuals.glow.chickens }});
 	}

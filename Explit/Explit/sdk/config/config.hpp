@@ -4,12 +4,15 @@
 class c_config
 {
 public:
-	c_config(const std::string directory_path);
-	void load(const std::string config_name);
-	void save(const std::string config_name);
-
+	c_config(const std::string path);
+	void load(const std::string name);
+	void save(const std::string name);
+	void refresh();
 	struct {
 		bool unhook = false;
+		std::vector<std::string> config_list;
+		std::string config_name;
+		int config_id = 0;
 		struct {
 			struct {
 				bool esp = true;
@@ -34,6 +37,15 @@ public:
 				bool local = false;
 				bool nades = false;
 				bool chickens = false;
+				struct {
+					float team_invisible[3] = { 0,0,255 };
+					float team_visible[3] = { 0,255,0 };
+					float enemy_invisible[3] = { 255,255,0 };
+					float enemy_visible[3] = { 255,0,0 };
+					float weapons[3] = { 255,0,0 } ;
+					float chickens[3] =  { 255,0,0 };
+					float vulnerability[3] = {255,255,255};
+				}colors;
 			}esp;
 			struct {
 				bool chams = true;
@@ -47,7 +59,17 @@ public:
 				bool team = false;
 				bool visible = false;
 				bool enemy = false;
+				bool vulnerability = false;
 				int style = 0;
+				struct {
+					float team_invisible[3] = { 0,0,255 };
+					float team_visible[3] = { 0,255,0 };
+					float enemy_invisible[3] = { 255,255,0 };
+					float enemy_visible[3] = { 255,0,0 };
+					float weapons[3] = { 255,0,0 };
+					float chickens[3] = { 255,0,0 };
+					float vulnerability[3] = { 255,255,255 };
+				}colors;
 			}glow;
 		}visuals;
 		struct {
