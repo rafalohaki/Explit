@@ -1,5 +1,4 @@
 #include "netvar_manager.hpp"
-
 c_nevtar c;
 
 c_netvarmanager::c_netvarmanager()

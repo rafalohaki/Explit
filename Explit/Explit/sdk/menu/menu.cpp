@@ -4,6 +4,7 @@ c_menu g_menu;
 void c_menu::draw()
 {
 	zgui::poll_input("Counter-Strike: Global Offensive");
+
 	if (zgui::begin_window("Explit for Counter-Strike: Global Offensive", { 500, 350 }, g_draw.menu, zgui::zgui_window_flags_none))
 	{
 		if (zgui::tab_button("Aimbot", { 165,30 }, aimbot))
@@ -12,8 +13,11 @@ void c_menu::draw()
 			visuals = false;
 			misc = false;
 		}
+
 		zgui::same_line();
+
 		zgui::next_column( -5,0 );
+
 		if (zgui::tab_button("Visuals", { 165,30 }, visuals))
 		{
 			aimbot = false;
@@ -21,17 +25,22 @@ void c_menu::draw()
 			misc = false;
 		}
 		zgui::same_line();	
+
 		zgui::next_column( -5,0 );
+
 		if (zgui::tab_button("Misc", { 166,30 }, misc))
 		{
 			aimbot = false;
 			visuals = false;
 			misc = true;
 		}
+
 		zgui::next_column( -327,34 );
+
 		if (aimbot)draw_aimbot();
 		if (visuals)draw_visuals();
 		if (misc)draw_misc();
+
 		zgui::end_window();
 	}
 
@@ -43,6 +52,7 @@ void c_menu::draw_watermark()
 	const auto chrono_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 	const auto time = ctime(&chrono_time);
 	auto fps = static_cast<int>(1.f / g_interfaces.p_global_vars->frame_time);
+
 	int width, height;
 	g_interfaces.p_engine->get_screen_size(width, height);
 	
@@ -95,6 +105,7 @@ void c_menu::draw_misc()
 	zgui::end_groupbox();
 
 }
+
 void c_menu::draw_visuals()
 {
 	zgui::begin_groupbox("ESP");
@@ -166,6 +177,7 @@ void c_menu::draw_visuals()
 	}
 	zgui::end_groupbox();
 }
+
 void c_menu::draw_aimbot()
 {
 

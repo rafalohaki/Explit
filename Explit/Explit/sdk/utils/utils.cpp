@@ -7,8 +7,11 @@ uintptr_t c_utils::find_signature(const char* module, const char* signature)
 	DWORD firstmatch = 0;
 	DWORD rangestart = (DWORD)GetModuleHandleA(module);
 	MODULEINFO miModInfo;
+
 	GetModuleInformation(GetCurrentProcess(), (HMODULE)rangestart, &miModInfo, sizeof(MODULEINFO));
+
 	DWORD rangeEnd = rangestart + miModInfo.SizeOfImage;
+
 	for (DWORD pCur = rangestart; pCur < rangeEnd; pCur++)
 	{
 		if (!*pat)
@@ -34,5 +37,6 @@ uintptr_t c_utils::find_signature(const char* module, const char* signature)
 			firstmatch = 0;
 		}
 	}
+
 	return 0u;
 }

@@ -5,23 +5,31 @@ c_config g_config("C:/Explit/Configs");
 c_config::c_config(const std::string path)
 {
 	directory_path = path;
+
+	if (!std::filesystem::exists(directory_path))
+		std::filesystem::create_directory(directory_path);
+
 	refresh();
 }
+
 void c_config::refresh()
 {
 	settings.config_list.clear();
+
 	for (const auto & entry : std::filesystem::directory_iterator(directory_path))
 		if (entry.path().string().find(".json"))
 		{
 			const auto length = entry.path().string().erase(0, 18).length();
 			settings.config_list.emplace_back(entry.path().string().erase(0, 18).erase(length - 5,5));
 		}
+
 	if (settings.config_list.empty())
 	{
 		save("default");
 		refresh();
 	}
 }
+
 void c_config::save(const std::string name)
 {
 	const auto path = directory_path + "/" + name;

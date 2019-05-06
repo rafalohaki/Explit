@@ -57,7 +57,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DLLMain.cpp" />
     <ClCompile Include="zgui\zgui.cpp">
       <Filter>zgui</Filter>
     </ClCompile>
@@ -118,6 +117,7 @@
     <ClCompile Include="features\visuals\dlight.cpp">
       <Filter>features\visuals</Filter>
     </ClCompile>
+    <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="zgui\zgui.hpp">

@@ -45,6 +45,7 @@ public:
 					float weapons[3] = { 255,0,0 } ;
 					float chickens[3] =  { 255,0,0 };
 					float vulnerability[3] = {255,255,255};
+					float local[3] = { 32,164,199 };
 				}colors;
 			}esp;
 			struct {
@@ -64,6 +65,7 @@ public:
 					float enemy_visible[3] = { 255,0,0 };
 					float arms[3] = { 255,0,0 };
 					float weapon[3] = { 255,0,0 };
+					float local[3] = { 32,164,199 };
 				}colors;
 			}chams;
 			struct {
@@ -83,6 +85,7 @@ public:
 					float enemy_visible[3] = { 255,0,0 };
 					float weapons[3] = { 255,0,0 };
 					float chickens[3] = { 255,0,0 };
+					float local[3] = { 32,164,199 };
 					float vulnerability[3] = { 255,255,255 };
 				}colors;
 			}glow;

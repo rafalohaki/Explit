@@ -26,45 +26,48 @@ void c_hooks::get_hooks()
 	zgui::functions.get_text_size = get_text_size;
 	zgui::functions.get_frametime = get_frametime;
 }
+
 void c_hooks::un_hooks()
 {
 	panel_hook->unhook(41);
 	client_mode_hook->unhook(44);
 	//surface_hook->unhook(67);
 }
-void __fastcall  c_hooks::paint_traverse(PVOID pPanels, int edx, unsigned int vguiPanel, bool forceRepaint, bool allowForce)
+
+void __fastcall  c_hooks::paint_traverse(PVOID p_panels, int edx, unsigned int vgui_panel, bool force_repaint, bool allow_force)
 {
 	static auto ohook = g_hooks.panel_hook->getorginal<paint_traverse_fn>(41);
-	static uint32_t overlaypanel;
+	static uint32_t overlay_panel;
 
-	if (!overlaypanel)
+	if (!overlay_panel)
 	{
-		const char* panel_name = g_interfaces.p_panel->get_name(vguiPanel);
+		const auto panel_name = g_interfaces.p_panel->get_name(vgui_panel);
 
-		if (lstrcmpA(panel_name, "MatSystemTopPanel") == 0)
+		if (panel_name == "MatSystemTopPanel")
 		{
-			overlaypanel = vguiPanel;
-			g_draw.menu = g_interfaces.p_surface->createfont_();
-			g_interfaces.p_surface->setfontglyphset(g_draw.menu, "Tahoma", 12, 540, 0, 0, fontflag_outline | fontflag_dropshadow);
-			g_draw.esp = g_interfaces.p_surface->createfont_();
-			g_interfaces.p_surface->setfontglyphset(g_draw.esp, "Tahoma", 11, 500, 0, 0, fontflag_outline );
+			overlay_panel = vgui_panel;
+			g_draw.menu = g_interfaces.p_surface->create_font_();
+			g_interfaces.p_surface->set_font_glyph_set(g_draw.menu, "Tahoma", 12, 540, 0, 0, fontflag_outline | fontflag_dropshadow);
+			g_draw.esp = g_interfaces.p_surface->create_font_();
+			g_interfaces.p_surface->set_font_glyph_set(g_draw.esp, "Tahoma", 11, 500, 0, 0, fontflag_outline );
 		}
 	}
-	if (overlaypanel == vguiPanel)
+	if (overlay_panel == vgui_panel)
 	{
-		g_menu.draw();
-
-		g_interfaces.g_local_player = static_cast<c_base_entity*>(g_interfaces.p_entity_list->get_client_entity((g_interfaces.p_engine->get_local_player())));
+		g_interfaces.g_local_player = reinterpret_cast<c_base_entity*>(g_interfaces.p_entity_list->get_client_entity((g_interfaces.p_engine->get_local_player())));
 
 		if (g_interfaces.g_local_player && g_interfaces.p_engine->is_in_game() && g_interfaces.p_engine->is_connected())
 		{
 			g_esp.start();
 			g_dlight.start();
 		}
+
+		g_menu.draw();
 	}
 
-	ohook(pPanels, vguiPanel, forceRepaint, allowForce);
+	ohook(p_panels, vgui_panel, force_repaint, allow_force);
 }
+
 int __fastcall c_hooks::post_screen_effects(void *thisptr, void * _edx, int a1)
 {
 	static auto ohook = g_hooks.client_mode_hook->getorginal<post_screen_effects_fn>(44);
@@ -77,6 +80,7 @@ int __fastcall c_hooks::post_screen_effects(void *thisptr, void * _edx, int a1)
 
 	return ohook(thisptr, _edx, a1);
 }
+
 void __fastcall  c_hooks::lock_cursor(i_surface* thisptr, void* edx)
 {
 	static auto ohook = g_hooks.surface_hook->getorginal<lock_cursor_fn>(67);
@@ -84,5 +88,5 @@ void __fastcall  c_hooks::lock_cursor(i_surface* thisptr, void* edx)
 	if (!menu_open)
 		ohook(thisptr,edx);
 
-	g_interfaces.p_surface->unlockcursor();
+	g_interfaces.p_surface->unlock_cursor();
 }

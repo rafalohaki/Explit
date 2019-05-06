@@ -6,7 +6,7 @@ public:
 	struct glow_object_definition_t {
 		glow_object_definition_t() { memset(this, 0, sizeof(*this)); }
 
-		class c_base_entity* pentity;    //0x0000
+		class c_base_entity* p_entity;    //0x0000
 		union {
 			Vector glow_color;           //0x0004
 			struct {

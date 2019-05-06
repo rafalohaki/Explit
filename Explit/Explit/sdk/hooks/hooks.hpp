@@ -9,7 +9,7 @@ public:
 	std::unique_ptr<vmt> render_view_hook;
 	void get_hooks();
 	void un_hooks();
-	static void __fastcall paint_traverse(PVOID ppanels, int edx, unsigned int vguipanel, bool forcerepaint, bool allowforce);
+	static void __fastcall paint_traverse(PVOID p_panels, int edx, unsigned int vgui_panel, bool force_repaint, bool allow_force);
 	static void __fastcall lock_cursor(i_surface* thisptr, void* edx);
 	static int	__fastcall post_screen_effects(void *thisptr, void * _EDX, int a1);
 	static void __fastcall scene_end(void* thisptr, void* edx);

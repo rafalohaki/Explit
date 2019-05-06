@@ -9,6 +9,7 @@ void c_sdk::on_inject()
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
 	SetConsoleTitleA("Explit Debug Console");
 #endif
+
 	HWND csgo = nullptr;
 
 	while (!(csgo = FindWindowA("Valve001", nullptr)))
@@ -19,10 +20,7 @@ void c_sdk::on_inject()
 	g_interfaces.get_interfaces();
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	c.netvar = std::shared_ptr<c_netvarmanager>(new c_netvarmanager());
-	g_hooks.get_hooks();
-
-	
-
+	g_hooks.get_hooks();	
 }
 
 void c_sdk::un_inject()
