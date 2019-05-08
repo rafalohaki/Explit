@@ -45,7 +45,7 @@ public:
 					float weapons[3] = { 255,0,0 } ;
 					float chickens[3] =  { 255,0,0 };
 					float vulnerability[3] = {255,255,255};
-					float local[3] = { 32,164,199 };
+					float local[4] = { 54, 251, 43 , 255 };
 				}colors;
 			}esp;
 			struct {

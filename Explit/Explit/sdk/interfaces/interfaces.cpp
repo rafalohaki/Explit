@@ -16,6 +16,7 @@ c_interfaces::c_interfaces()
 	p_engine_trace = nullptr;
 	p_render_view = nullptr;
 	p_engine_effects = nullptr;
+	p_material_system = nullptr;
 }
 
 void c_interfaces::get_interfaces()
@@ -29,6 +30,7 @@ void c_interfaces::get_interfaces()
 	p_engine_trace = get_interface<i_engine_trace>("engine.dll", "EngineTraceClient");
 	p_model_info_client = get_interface<iv_model_info_client>("engine.dll", "VModelInfoClient");
 	p_render_view = get_interface<iv_render_view>("engine.dll", "VEngineRenderView");
+	p_material_system = get_interface<i_material_system>("materialsystem.dll", "VMaterialSystem080",true);
 	p_engine_effects = get_interface<iv_engine_effects>("engine.dll", "VEngineEffects");
 	p_global_vars = **reinterpret_cast<i_global_vars_base***>((*reinterpret_cast<uintptr_t**>(p_client))[0] + 0x1B);
 	p_client_mode = **reinterpret_cast<i_client_mode***>((*reinterpret_cast<uintptr_t**>(p_client))[10] + 5);

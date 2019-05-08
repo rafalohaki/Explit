@@ -86,6 +86,10 @@ void c_config::save(const std::string name)
 	save["Explit - Config"]["Visuals"]["Esp"]["Colors"]["Vulnerability"][0] = settings.visuals.esp.colors.vulnerability[0];
 	save["Explit - Config"]["Visuals"]["Esp"]["Colors"]["Vulnerability"][1] = settings.visuals.esp.colors.vulnerability[1];
 	save["Explit - Config"]["Visuals"]["Esp"]["Colors"]["Vulnerability"][2] = settings.visuals.esp.colors.vulnerability[2];
+	save["Explit - Config"]["Visuals"]["Esp"]["Colors"]["Local"][0] = settings.visuals.esp.colors.local[0];
+	save["Explit - Config"]["Visuals"]["Esp"]["Colors"]["Local"][1] = settings.visuals.esp.colors.local[1];
+	save["Explit - Config"]["Visuals"]["Esp"]["Colors"]["Local"][2] = settings.visuals.esp.colors.local[2];
+	save["Explit - Config"]["Visuals"]["Esp"]["Colors"]["Local"][3] = settings.visuals.esp.colors.local[3];
 
 	save["Explit - Config"]["Visuals"]["Glow"]["Enable"] = settings.visuals.glow.glow;
 	save["Explit - Config"]["Visuals"]["Glow"]["Chickens"] = settings.visuals.glow.chickens;

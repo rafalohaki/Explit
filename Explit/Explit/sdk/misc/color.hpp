@@ -20,10 +20,10 @@ public:
 	explicit color(float* rgb) : color(rgb[0], rgb[1], rgb[2], 1.0f) {}
 	explicit color(unsigned long argb)
 	{
-		_ccolor[2] = (unsigned char)((argb & 0x000000ff) >> (0 * 8));
-		_ccolor[1] = (unsigned char)((argb & 0x0000ff00) >> (1 * 8));
-		_ccolor[0] = (unsigned char)((argb & 0x00ff0000) >> (2 * 8));
-		_ccolor[3] = (unsigned char)((argb & 0xff000000) >> (3 * 8));
+		colors[2] = (unsigned char)((argb & 0x000000ff) >> (0 * 8));
+		colors[1] = (unsigned char)((argb & 0x0000ff00) >> (1 * 8));
+		colors[0] = (unsigned char)((argb & 0x00ff0000) >> (2 * 8));
+		colors[3] = (unsigned char)((argb & 0xff000000) >> (3 * 8));
 	}
 
 	void    set_raw_color(int color32);
@@ -33,25 +33,25 @@ public:
 	void	set_color(float* color);
 	void    get_color(int &_r, int &_g, int &_b, int &_a) const;
 
-	int r() const { return _ccolor[0]; }
-	int g() const { return _ccolor[1]; }
-	int b() const { return _ccolor[2]; }
-	int a() const { return _ccolor[3]; }
+	int r() const { return colors[0]; }
+	int g() const { return colors[1]; }
+	int b() const { return colors[2]; }
+	int a() const { return colors[3]; }
 
-	void set_alpha(int alpha) { _ccolor[3] = alpha; }
+	void set_alpha(int alpha) { colors[3] = alpha; }
 
 	unsigned char &operator[](int index)
 	{
-		return _ccolor[index];
+		return colors[index];
 	}
 	const unsigned char &operator[](int index) const
 	{
-		return _ccolor[index];
+		return colors[index];
 	}
 
 	bool operator==(const color &rhs) const;
 	bool operator!=(const color &rhs) const;
 	color &operator=(const color &rhs);
 
-	unsigned char _ccolor[4];
+	unsigned char colors[4];
 };

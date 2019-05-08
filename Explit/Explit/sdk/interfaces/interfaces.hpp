@@ -16,6 +16,7 @@ public:
 	i_engine_trace* p_engine_trace;
 	iv_render_view* p_render_view;
 	iv_engine_effects* p_engine_effects;
+	i_material_system* p_material_system;
 	c_base_entity* g_local_player;
 	void get_interfaces();
 private:

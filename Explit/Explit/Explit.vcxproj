@@ -135,6 +135,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="features\visuals\chams.cpp" />
     <ClCompile Include="features\visuals\dlight.cpp" />
     <ClCompile Include="features\visuals\esp.cpp" />
     <ClCompile Include="features\visuals\glow.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="zgui\zgui.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="features\visuals\chams.hpp" />
     <ClInclude Include="features\visuals\dlight.hpp" />
     <ClInclude Include="features\visuals\esp.hpp" />
     <ClInclude Include="features\visuals\glow.hpp" />
@@ -172,6 +174,7 @@
     <ClInclude Include="sdk\interfaces\valve\i_global_vars.hpp" />
     <ClInclude Include="sdk\interfaces\valve\i_base_client_dll.hpp" />
     <ClInclude Include="sdk\interfaces\valve\i_client_entity_list.hpp" />
+    <ClInclude Include="sdk\interfaces\valve\i_material_system.hpp" />
     <ClInclude Include="sdk\interfaces\valve\i_panel.hpp" />
     <ClInclude Include="sdk\interfaces\valve\i_render_view.hpp" />
     <ClInclude Include="sdk\interfaces\valve\i_surface.hpp" />

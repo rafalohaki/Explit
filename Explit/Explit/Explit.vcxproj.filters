@@ -118,6 +118,9 @@
       <Filter>features\visuals</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="features\visuals\chams.cpp">
+      <Filter>features\visuals</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="zgui\zgui.hpp">
@@ -293,6 +296,12 @@
     </ClInclude>
     <ClInclude Include="features\visuals\dlight.hpp">
       <Filter>features\visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="features\visuals\chams.hpp">
+      <Filter>features\visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\valve\i_material_system.hpp">
+      <Filter>sdk\interfaces\valve</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
